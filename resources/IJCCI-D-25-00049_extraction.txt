@@ -1,0 +1,414 @@
+Abstract
+
+This investigation examines the effectiveness of AI-powered virtual agents
+in stimulating students’ interest in history through interactive learning and
+thematic alignment. Three experimental studies conducted with French sec-
+ondary school students analyzed how interactivity (interactive vs. prere-
+corded video) and thematic alignment of virtual agents (thematically aligned
+vs. neutral) influenced interest in learning activity, historical content, and
+the agents themselves. The studies were integrated into the regular curricu-
+lum at three different grade levels (6th grade, 8th grade, and high school),
+covering various historical periods. Results demonstrate that interactivity
+significantly enhances interest across all age levels, while the effect of the-
+matic alignment varies according to students’ cognitive development. Study
+
+──────────────────────────────────────────────────
+
+1 revealed that interactivity increased interest, whereas using a formally pre-
+
+sented historical agent did not improve student engagement. Study 2 showed
+that an approachably presented thematic agent significantly increased inter-
+est levels, though this effect might be attributed to the presentation approach
+rather than historical alignment alone. Study 3 found no significant differ-
+ence between an agent representing an authority figure and one representing
+a peer. These findings illuminate the complex relationship between inter-
+activity, virtual character design, and developmental factors in shaping stu-
+dents’ interest in historical content, offering valuable insights for designing
+educational tools that leverage AI to enhance history learning.
+Keywords: AI, Virtual Agents, History Education, Interactivity,
+Personalized learning, Educational Technology, Student Interest
+2
+
+──────────────────────────────────────────────────
+
+1. Introduction
+
+History education, with its potential for developing critical thinking and
+civic understanding, plays a major role in education. Research indicated that
+students often perceived history as disconnected from their daily lives and
+personal experiences (Audigier and Fink, 2010). This perception became par-
+ticularly significant during the transition to secondary education, as students
+faced more complex historical concepts while simultaneously developing their
+identity and autonomy (Evans et al., 2018), a period during which motivation
+patterns often shifted (Gnambs and Hanfstingl, 2016). To support teachers
+in addressing these challenges, researchers explored various pedagogical ap-
+proaches and tools, including active learning methods (Roussou et al., 2024;
+Petousi et al., 2022; Del Favero et al., 2007). While these approaches showed
+promise, implementing them effectively in classroom settings often presented
+practical challenges. Our study investigated how AI-powered virtual agents
+might serve as a complementary tool for teachers, not to replace their essen-
+tial role in history education, but to provide additional means of engaging
+students with historical content. Our approach focused on oral interaction
+with virtual agents, utilizing AI technologies for speech recognition, natural
+language processing, and real-time facial animation. While previous research
+had explored AI-generated characters for learning, these studies had pri-
+marily employed text-based interactions (Pataranutaporn et al., 2023; Leong
+et al., 2024) or text-based interfaces (Prasongpongchai et al., 2024). Build-
+ing on Domagk (2010)’s work on interactivity in multimedia learning, we
+leveraged recent advances in generative AI to create virtual agents capable
+of dynamic conversations with students. Drawing on social agency theory
+(Moreno et al., 2001; Mayer and DaPra, 2012) and research about social
+cues in multimedia learning (Mayer, 2014; Sinatra et al., 2021; Sanghoon
+Park, 2015), we developed these agents with features aiming at enhancing
+social connection, including human-like voices (Craig and Schroeder, 2017),
+expressive facial animations (Liew et al., 2017), and contextually appropriate
+language. Through three experimental studies in French schools, conducted
+in close collaboration with teachers as part of their regular history curriculum,
+we examined how interactivity and character alignment influenced students’
+interest across different grade levels. Study 1 investigated how 8th-grade stu-
+dents engaged with Napoleon Bonaparte in learning about the French Em-
+pire. Study 2 explored 6th-grade students’ interactions with Julius Caesar
+while studying ancient Rome. Study 3 examined how high school students’
+3
+interest in the French Resistance was affected by interactions with either
+Charles de Gaulle or a peer character. These studies allowed us to examine
+how virtual agents might effectively complement existing teaching practices
+and support teachers’ instructional goals across different educational levels
+and historical contexts.
+
+──────────────────────────────────────────────────
+
+2. Literature Review
+
+
+
+──────────────────────────────────────────────────
+
+2.1. Interest Development in Educational Contexts
+
+Interest serves as a significant factor in learning, combining affective and
+cognitive dimensions. The affective aspect involves the experience associated
+with an activity, while the cognitive aspect relates to the drive for under-
+standing the subject matter. This dual nature contributes to sustained en-
+gagement and knowledge seeking behavior, influencing both the quality and
+persistence of learning experiences (Renninger and Hidi, 2015). Research
+identifies two main forms of interest that exist along a developmental con-
+tinuum (Priniski et al., 2018). Situational interest emerges as a response
+to environmental triggers such as novel activities or problems presented in
+the learning environment. When supported by appropriate learning condi-
+tions, it may develop into individual interest, which represents a more stable
+disposition toward a domain. This development reflects the transition from
+externally supported to self-sustained engagement with content. According
+to Hidi and Renninger’s 2006 model, the progression of interest develop-
+ment follows four distinct phases. The first phase, triggered situational in-
+terest, represents an initial attention response to environmental stimuli, such
+as unexpected information, novel presentations, or engaging activities that
+challenge existing assumptions. In the second phase, attention becomes more
+sustained through meaningful engagement with content: this is referred to as
+maintained situational interest. The third phase, emerging individual inter-
+est, marks the beginning of a predisposition to reengage with specific content
+over time. Finally, the fourth phase, well-developed individual interest, repre-
+sents a relatively enduring predisposition to reengage with particular content
+and a tendency to generate curiosity questions that lead to knowledge build-
+ing. This conceptualization of interest differs from related constructs such as
+motivation and engagement. Motivation encompasses both extrinsic forces,
+driven by external rewards or pressures, and intrinsic forces emerging from
+personal values and goals. Engagement describes the visible manifestation
+4
+of involvement in specific tasks, which can range from superficial participa-
+tion to deep involvement. Interest represents a distinct psychological state
+that influences both motivation and engagement patterns, characterized by
+its focus on specific content and its combination of affective and cognitive
+components. The theoretical understanding of interest development is signif-
+icantly informed by two complementary frameworks: Cognitive Evaluation
+Theory (CET) and Self-Determination Theory (SDT). The CET describes
+how environmental factors affect intrinsic motivation through their impact
+on perceived autonomy and competence (Deci and Ryan, 1985). The theory
+posits that external events influence motivation by affecting individuals’ per-
+ceived locus of causality (whether they feel their actions are self-determined
+or externally controlled) and their sense of competence (whether they feel
+capable of achieving desired outcomes). A key contribution of CET lies in
+its understanding that events are not inherently motivating or demotivating.
+Rather, their impact depends on how individuals interpret three aspects:
+informational aspects that provide feedback about competence, controlling
+aspects that pressure behavior, and amotivating aspects that signal incom-
+petence. The SDT extends this understanding by incorporating the role of
+social relationships. The theory identifies three basic psychological needs:
+autonomy (the need to feel self-determined in one’s actions), competence
+(the need to feel capable of achieving desired outcomes), and relatedness
+(the need to feel connected to others). Learning environments foster inter-
+est development when they support these needs through meaningful choices,
+appropriate challenges, constructive feedback, and supportive social inter-
+actions (Deci and Ryan, 2000). Research shows that intrinsic motivation
+tends to decline throughout schooling, particularly during the transition to
+secondary education. This period is marked not only by increased perfor-
+mance pressure but also by significant biological changes and rising anxiety
+levels among students (Gnambs and Hanfstingl, 2016). These multiple chal-
+lenges, combined with traditional school structures that may limit natural
+curiosity and opportunities for exploration (Engel, 2009, 2011), can affect
+students’ engagement with learning. In history education, often perceived
+as distant and disconnected from personal experiences (Audigier and Fink,
+2010), developing interest presents specific challenges. Students often view
+the discipline as a collection of facts to memorize rather than a process of
+inquiry. This observation aligns with (Priniski et al., 2018)’s work on the
+importance of personal relevance in learning, suggesting that the perceived
+distance between history and students’ personal experience can be reduced
+5
+through approaches that promote identification and perceived utility. Re-
+search on effective teaching practices reveals several approaches for foster-
+ing interest development. Among these, a balance between structure and
+autonomy (Jang et al., 2010), and environments promoting active participa-
+tion (Cents-Boonstra et al., 2021), provide foundational support for interest
+development. Additionally, (Harackiewicz et al., 2016) identify four key in-
+terventions: adapting structural features of the learning environment, per-
+sonalizing the learning context, implementing problem-based learning, and
+emphasizing content utility. Implementing these strategies requires attention
+to developmental phases. As learners progress from situational to individual
+interest, instructional approaches should evolve correspondingly (Renninger
+and Hidi, 2015). For instance, research indicates that secondary school stu-
+dents respond more positively to interactive approaches like debates and field
+studies compared to traditional didactic methods (Audigier and Fink, 2010),
+suggesting the importance of active engagement in interest development. As
+early as 2002, (Yarema, 2002) highlights the potential of technology-based
+approaches to transform history teaching. However, merely introducing tech-
+nological tools does not guarantee increased engagement or interest. Further
+research is needed to better understand how technology can support the psy-
+chological needs identified by the CET and SDT, and create meaningful con-
+nections between historical content and student experience. One promising
+approach for fostering these connections is through personalizing learning
+content, which tailors educational experiences to individual student needs
+and interests. The following section examines this approach in more detail.
+
+──────────────────────────────────────────────────
+
+2.2. Learning Content Personalization
+
+Personalized learning emerges as a powerful approach for connecting with
+students’ individual needs and preferences. This involves adapting content
+and activities to align with their specific interests, prior knowledge, and learn-
+ing styles. As highlighted earlier, personal relevance is a key factor in bridg-
+ing the gap between abstract concepts and student engagement (Priniski
+et al., 2018), and personalization directly addresses this need. Pioneering
+research by Cordova and Lepper (1996) demonstrated that integrating stu-
+dents’ personal information into learning contexts, such as using their names
+or interests, could increase their motivation to engage with educational ac-
+tivities. Even providing students with control over non-essential aspects of
+learning, like choosing an avatar or visual theme, showed positive effects on
+motivation. Reber et al. (2018) investigated different approaches to person-
+6
+alizing education, finding that interventions targeting students’ individual
+interests and preferences could increase student interest in subjects often
+perceived as challenging, such as mathematics and science. These targeted
+interventions included adapting learning materials to students’ self-reported
+interests (e.g., sports, music) and allowing students to choose examples that
+connected course concepts to their personal experiences. Høgheim and Re-
+ber (2015), studying mathematics education, found that allowing students
+to choose examples relevant to their interests enhanced task engagement,
+especially for those with initially low interest. This strategy of connecting
+
+──────────────────────────────────────────────────
+
+abstract concepts to personal experiences creates effective bridges for learn-
+
+ing (Reber et al., 2009). Hagay and Baram-Tsabari (2015) demonstrated
+a practical implementation of personalization by integrating students’ ques-
+tions into the curriculum. Their study with secondary school science students
+showed how placing student curiosity at the center of learning could enhance
+classroom engagement and relationships. However, personalizing learning
+presents significant challenges in implementation. Walkington and Bernacki
+(2018) identified several key barriers, including the diversity of student inter-
+ests, the constant evolution of these interests, and the complexity of creating
+high-quality personalized content for each student. These challenges require
+careful consideration to maintain educational effectiveness while pursuing
+personalization strategies.
+
+──────────────────────────────────────────────────
+
+2.3. Active Learning
+
+Complementing personalizing learning, active learning strategies enhance
+interest and engagement by promoting deeper cognitive involvement. Active
+learning encompasses pedagogical approaches where students are engaged in
+their learning process through exploration, experimentation, and collabora-
+tion. As Mayer (2014) and Yannier et al. (2021) note, the approach ex-
+tends beyond physical activities to emphasize cognitive engagement, defined
+as "actively thinking about what you are doing." This engagement mani-
+fests through various forms of learning activities, including problem-solving,
+group discussions, project creation, and interaction with simulations. In-
+teractivity constitutes a central element of active learning (Domagk, 2010;
+Evans and Gibbons, 2007). The approach enables students to regulate their
+learning pace, explore concepts based on their interests, formulate questions,
+and receive immediate feedback. Deslauriers et al. (2019) found that active
+learning led to improved learning outcomes compared to passive methods,
+although students initially perceived it as less effective. This observation
+7
+appeared to result from students interpreting the increased cognitive effort
+required by active learning as a sign of difficulty, when it indicated deeper
+information processing. Multiple studies have subsequently examined these
+approaches specifically in history education. Del Favero et al. (2007) inves-
+tigated active learning in history education through a comparative study of
+group and individual problem-solving approaches. Their research, focused
+on teaching World War I and the Italian economic boom of the 1950s, in-
+dicated that students participating in group discussions demonstrated both
+enhanced understanding of historical concepts and increased subject interest.
+In a related study, Ijaz et al. (2017) examined the effects of immersion in an
+interactive virtual world compared to traditional learning methods. Students
+exploring a 3D reconstruction of ancient Uruk demonstrated improved test
+performance and increased engagement with the content, spending more time
+investigating historical elements and interacting with virtual characters. Re-
+cent studies have further explored how digital technologies can enrich active
+learning in history education. Petousi et al. (2022) examined how interac-
+tive digital storytelling could support historical learning. Their study on
+ancient Athens revealed that strategic decision points in historical narratives
+could stimulate meaningful group discussions and deeper historical under-
+standing. Students engaged actively with the content through collaborative
+decision-making, helping them consider historical perspectives and contexts
+more comprehensively. Extending this focus on engagement, Roussou et al.
+(2024) explored how emotional connection with historical content could be
+fostered in museum settings. Their "Emotions Speaking" installation demon-
+strated how combining tangible interactions with emotional narratives could
+encourage adolescents to engage with historical figures beyond factual knowl-
+edge. By exploring multiple emotional perspectives on historical characters,
+students developed stronger historical empathy and critical thinking skills.
+These studies suggest that educational environments incorporating auton-
+omy, participation, social interaction, and feedback mechanisms influence
+student motivation and interest. The implementation of active, hands-on
+experiences may help transform abstract concepts into concrete learning ex-
+periences. Research suggests this active participation in learning activities
+could support deeper understanding of educational content. Recent advances
+in artificial intelligence technology have also created new opportunities for
+interactive learning environments.
+8
+
+──────────────────────────────────────────────────
+
+2.4. Virtual Agents: AI-driven Evolution
+
+Virtual agents have evolved in educational research over recent decades
+(Johnson and Lester), progressing from simple information delivery tools to
+more sophisticated learning partners. The emergence of Large Language
+Models (LLMs) has particularly accelerated this evolution, opening new pos-
+sibilities for educational applications. Recent studies by (Kasneci et al.,
+2023) and (Labadze et al., 2023) demonstrate LLMs’ capacity to generate
+personalized responses, adapt to students’ needs in real-time, and produce
+contextually relevant educational content, while acknowledging the impor-
+tance of carefully evaluating their limitations. This advancement aligns with
+earlier research on interactive multimodal learning environments, which em-
+phasizes the importance of dialogue, control, and manipulation in promot-
+ing active learning and knowledge construction (Moreno and Mayer, 2007).
+Different implementations of AI-driven virtual agents have emerged across
+educational contexts. Pataranutaporn et al. (2023) investigated conversa-
+tional interactions with historical figures through text interfaces powered by
+language models and historical data. Their comparison between interactive
+dialogues and traditional text reading indicated improved motivation and
+learning outcomes with the interactive approach, though the contribution
+of interactivity showed mixed results in their quantitative analysis. These
+observations illustrate the complexity of designing effective interactive learn-
+ing experiences. In a study on financial education, Prasongpongchai et al.
+(2024) evaluated how adding LLM-powered text-based interactivity to virtual
+instruction could enhance learning experiences for college students. Their re-
+sults showed that enabling students to engage in dialogue with the virtual
+instructor through a chat interface led to improved motivation and engage-
+ment compared to passive video instruction. While their findings highlight
+the promise of interactive virtual agents in individual learning contexts, the
+potential of collective oral interaction in authentic classroom settings remains
+unexplored. This gap is particularly significant given the fundamental role of
+verbal exchanges in classroom dynamics. In vocabulary learning, Leong et al.
+(2024) studied content personalization using generative AI. Their system de-
+veloped customized examples and narratives based on individual interests,
+leading to increased intrinsic motivation and enhanced feelings of competence
+and autonomy among participants. These results support earlier findings on
+personalization benefits documented by Høgheim and Reber (2015). Abdel-
+ghani et al. (2024) examined how AI-driven agents could foster curiosity and
+knowledge exploration among primary school children. Their conversational
+9
+agent, designed to encourage divergent questioning, led to improved question
+quality and sustained exploratory activities. These results support Moreno
+and Mayer (2007)’s work on the role of interactivity and learner control in
+meaningful learning experiences. Current technological advances face several
+challenges. Student engagement may fluctuate over time due to novelty ef-
+fects (Leong et al., 2024; Fryer et al., 2019), while questions about reliability,
+bias, privacy, and academic integrity need consideration (Prasongpongchai
+et al., 2024; Labadze et al., 2023; Dempere et al., 2023; Berson and Berson,
+2024). Beyond establishing guidelines for integrating AI in education, re-
+search opportunities exist to examine how verbal interaction with AI agents
+could complement current teaching practices. The oral modality, by lever-
+aging natural classroom dynamics and enabling collective dialogue, might
+create different patterns of engagement compared to individual text-based
+interactions.
+
+──────────────────────────────────────────────────
+
+2.5. Representation and Social Presence
+
+Creating educational interactions with virtual agents requires understand-
+ing how students perceive and engage with these digital entities. Research in-
+dicates that effective educational interactions stem from the agent’s ability to
+generate social responses from learners. Social agency theory (Moreno et al.,
+2001; Mayer and DaPra, 2012) explains how social cues in virtual agents elicit
+social responses in learners, leading to enhanced cognitive processing of edu-
+cational content. This process, known as "ethopoeia" (Nass and Moon, 2000),
+occurs even when users are consciously aware of the artificial nature of the in-
+teraction. Social presence, defined as the sense of being together with another
+in a mediated environment (Biocca et al., 2003), can be enhanced through
+various design elements. For verbal communication, synthetic voices can be
+as effective as human voices in educational contexts (Craig and Schroeder,
+2017). Non-verbal elements also contribute: facial expressions must align
+with context (Liew et al., 2016), and when coordinated with speech, these
+expressions influence learning motivation (Liew et al., 2017). The integration
+of emotional displays and warmth through both channels enhances student
+engagement and perceived trustworthiness (Horovitz and Mayer, 2021; Wang
+et al., 2021; Sinatra et al., 2021). This multi-modal approach is comple-
+mented by communication style, where conversational approaches improve
+content accessibility and adaptation to learner preferences, optimizing cog-
+nitive load and motivation (Lin et al., 2020; Sanghoon Park, 2015). While
+these basic social cues form the foundation of agent-student interactions,
+10
+their effectiveness may be amplified through thematic alignment between
+the agent’s characteristics and the educational context. Schmidt et al. (2019)
+demonstrated this through a comparative study where learners interacting
+with a thematically aligned agent (an astronaut teaching space concepts)
+showed higher levels of social presence and engagement compared to those
+interacting with a neutral agent. This finding has implications for historical
+education, suggesting that authentically representing historical figures while
+maintaining educational effectiveness could enhance engagement. Beyond
+the immediate effects of social presence and thematic alignment, these inter-
+actions may foster parasocial relationships - one-sided psychological bonds
+where users develop feelings of friendship, understanding, and intimacy with
+media figures despite the absence of actual reciprocal interaction (Horton
+and Richard Wohl, 1956). These relationships appear particularly signifi-
+cant during childhood and adolescence (Calvert, 2021; Richards and Calvert,
+2017), suggesting potential benefits for learning engagement. Supporting this
+potential, research by Pataranutaporn et al. (2022) shows that virtual agents
+representing admired figures can increase motivation. The implementation
+of AI-driven historical representations involves balancing technological capa-
+bilities with educational objectives. Recent research emphasizes maintaining
+historical authenticity while developing engaging interactions (Berson and
+Berson, 2024; Pataranutaporn et al., 2023).
+
+──────────────────────────────────────────────────
+
+2.6. Research Overview
+
+Our research aims at examining the role of virtual agents in history ed-
+ucation through three complementary studies, each focusing on a distinct
+historical period and figure: Napoleon Bonaparte and the French Empire
+with 8th graders, Julius Caesar and ancient Rome with 6th graders, and
+Charles de Gaulle and the French Resistance with high school students. Us-
+ing classroom-based experimental protocols, we evaluated how AI-powered
+virtual agents, represented as either historical figures or neutral characters,
+influence students’ interest with the learning activity, historical figures, and
+lesson content. By comparing interactive dialogue and non-interactive video
+conditions across different developmental stages, this research explores how
+interaction mode and character representation shape students’ learning ex-
+perience in history education. These investigations build upon the existing
+literature, highlighting the potential of virtual agents to enhance engagement
+and interest in educational settings, particularly through features that pro-
+mote social presence, active learning, and personalized learning experiences.
+11
+Central to this potential are the capabilities of LLMs to generate contextually
+appropriate and tailored responses. To further investigate these dynamics in
+the context of history education, specifically through oral interactions, we
+developed an experimental software tool named Memor-IA. The following
+section provides further details on the technical aspects, specifications, and
+functionalities of the Memor-IA software.

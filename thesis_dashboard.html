@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - Thèse IHM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --paper: #f8f5f0;
+            --cream: #faf8f5;
+            --accent: #8b4513;
+            --accent-light: #a0522d;
+            --success: #2e7d32;
+            --success-light: #4caf50;
+            --warning: #f57c00;
+            --danger: #c62828;
+            --pending: #78909c;
+            --border: #e0dcd5;
+            --new: #1565c0;
+            --teal: #00796b;
+            --teal-light: #26a69a;
+            --teal-bg: #e0f2f1;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 1600px; margin: 0 auto; padding: 1.5rem; }
+        
+        header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+        
+        .subtitle { font-size: 0.9rem; color: var(--accent); }
+        .date-update { font-size: 0.75rem; color: var(--pending); margin-top: 0.25rem; }
+        
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .stat-label { font-size: 0.8rem; color: var(--pending); }
+        
+        /* Recent Activity Panel */
+        .activity-panel {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .activity-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+        
+        .activity-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        
+        .activity-check {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* ========================================
+           CHANTIER 4.1 PANEL - HEXAGONAL STYLE
+           ======================================== */
+        .chantier-panel {
+            background: linear-gradient(135deg, var(--teal-bg) 0%, #b2dfdb 100%);
+            border: 3px solid var(--teal);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .chantier-panel::before {
+            content: '⬡';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-size: 1.5rem;
+            color: var(--teal);
+            background: var(--paper);
+            padding: 0 0.5rem;
+        }
+        
+        .chantier-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px dashed var(--teal);
+        }
+        
+        .chantier-title-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .chantier-icon {
+            font-size: 2rem;
+        }
+        
+        .chantier-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+        
+        .chantier-subtitle {
+            font-size: 0.85rem;
+            color: #004d40;
+            margin-top: 0.25rem;
+        }
+        
+        .chantier-progress-box {
+            background: white;
+            border: 2px solid var(--teal);
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .chantier-progress-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+        
+        .chantier-progress-label {
+            font-size: 0.75rem;
+            color: #004d40;
+        }
+        
+        /* Section Cards Grid */
+        .chantier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .section-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .section-header {
+            padding: 0.6rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .section-header.section-done {
+            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+            color: #1b5e20;
+        }
+        
+        .section-header.section-todo {
+            background: linear-gradient(135deg, #ffe0b2 0%, #ffcc80 100%);
+            color: #e65100;
+        }
+        
+        .section-header.section-partial {
+            background: linear-gradient(135deg, #b2ebf2 0%, #80deea 100%);
+            color: #006064;
+        }
+        
+        .section-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+        
+        .section-name {
+            flex: 1;
+            margin-left: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .section-status {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+        
+        .file-list {
+            padding: 0.5rem;
+        }
+        
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 0.25rem;
+        }
+        
+        .file-item.done {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .file-item.todo {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        
+        .file-icon {
+            font-size: 0.9rem;
+        }
+        
+        .file-badge {
+            font-size: 0.6rem;
+            background: rgba(0,0,0,0.1);
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            margin-left: auto;
+        }
+        
+        /* Sources Panel */
+        .chantier-sources {
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sources-title {
+            font-weight: 600;
+            color: var(--teal);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.5rem;
+        }
+        
+        .source-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: #004d40;
+            background: white;
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid #b2dfdb;
+        }
+        
+        .source-icon {
+            font-size: 0.9rem;
+        }
+        
+        /* Next Step */
+        .chantier-next {
+            background: white;
+            border: 2px solid var(--teal);
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 5px solid var(--teal);
+        }
+        
+        .next-title {
+            font-weight: 600;
+            color: var(--teal);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .next-content {
+            font-size: 0.85rem;
+            color: #004d40;
+            line-height: 1.5;
+        }
+        
+        /* FOCUS: Remaining Tasks Panel */
+        .focus-panel {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border: 2px solid var(--warning);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .focus-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .focus-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #e65100;
+        }
+        
+        .focus-subtitle {
+            font-size: 0.85rem;
+            color: #bf360c;
+        }
+        
+        /* Task Cards Grid */
+        .tasks-remaining-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1rem;
+        }
+        
+        .task-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            border-left: 5px solid var(--warning);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .task-card.blocked {
+            border-left-color: var(--danger);
+            opacity: 0.75;
+        }
+        
+        .task-card.next {
+            border-left-color: var(--success);
+            background: #e8f5e9;
+        }
+        
+        .task-card.new-task {
+            border-left-color: var(--new);
+            background: #e3f2fd;
+        }
+        
+        .task-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        
+        .task-card-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .task-card-badges {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge-next { background: var(--success); color: white; }
+        .badge-blocked { background: var(--danger); color: white; }
+        .badge-new { background: var(--new); color: white; }
+        .badge-type-a { background: #e3f2fd; color: #1565c0; }
+        .badge-type-b { background: #fff3e0; color: #e65100; }
+        .badge-type-c { background: #f3e5f5; color: #7b1fa2; }
+        
+        .task-card-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--ink);
+        }
+        
+        .task-card-desc {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+        
+        .task-card-meta {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+        }
+        
+        .meta-label {
+            color: var(--pending);
+            font-weight: 500;
+        }
+        
+        .meta-value {
+            color: var(--ink);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+        
+        .meta-value.words {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 1100px) {
+            .main-grid { grid-template-columns: 1fr; }
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        /* Phase Cards */
+        .phase-card {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+        }
+        
+        .phase-header {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 0.6rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .phase-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        
+        .phase-progress {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .phase-bar {
+            width: 60px;
+            height: 5px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .phase-fill {
+            height: 100%;
+            background: white;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+        
+        .phase-stats { font-size: 0.8rem; opacity: 0.9; }
+        
+        .phase-content { padding: 0.5rem; display: none; }
+        .phase-content.open { display: block; }
+        
+        /* Task Items */
+        .task-item {
+            display: grid;
+            grid-template-columns: 45px 1fr auto auto;
+            gap: 0.5rem;
+            align-items: center;
+            padding: 0.5rem 0.6rem;
+            border-radius: 5px;
+            margin-bottom: 0.3rem;
+            background: white;
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+        
+        .task-item.done { background: #e8f5e9; border-color: #a5d6a7; }
+        .task-item.next { background: #fff8e1; border-color: var(--warning); }
+        .task-item.new-task { background: #e3f2fd; border-color: #90caf9; }
+        
+        .task-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .task-name {
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .task-type {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
+        
+        .type-a { background: #e3f2fd; color: #1565c0; }
+        .type-b { background: #fff3e0; color: #e65100; }
+        .type-c { background: #f3e5f5; color: #7b1fa2; }
+        
+        .task-status {
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .status-pending { background: #eceff1; color: #546e7a; }
+        .status-complete { background: #e8f5e9; color: #2e7d32; }
+        
+        /* Right Panel */
+        .right-panel { display: flex; flex-direction: column; gap: 1rem; }
+        
+        .panel-card {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+        
+        .chapter-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem;
+            border-radius: 5px;
+            margin-bottom: 0.3rem;
+            background: white;
+            border: 1px solid var(--border);
+        }
+        
+        .chapter-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 22px;
+        }
+        
+        .chapter-info { flex: 1; min-width: 0; }
+        
+        .chapter-name {
+            font-weight: 500;
+            font-size: 0.8rem;
+            margin-bottom: 0.15rem;
+        }
+        
+        .chapter-bar {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .chapter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success) 0%, var(--success-light) 100%);
+        }
+        
+        .chapter-percent {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--success);
+            font-weight: 500;
+            min-width: 30px;
+            text-align: right;
+        }
+        
+        /* Legend */
+        .legend {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            padding: 0.75rem;
+            flex-wrap: wrap;
+            font-size: 0.75rem;
+        }
+        
+        .legend-item { display: flex; align-items: center; gap: 0.3rem; }
+        .legend-color { width: 8px; height: 8px; border-radius: 2px; }
+        
+        /* Actions */
+        .actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+        
+        .btn {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-secondary { background: white; color: var(--ink); border: 1px solid var(--border); }
+        
+        /* Order indicator */
+        .order-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--warning);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-right: 0.3rem;
+        }
+        
+        .order-num.blocked { background: var(--danger); }
+        .order-num.new { background: var(--new); }
+        
+        /* New task indicator */
+        .new-indicator {
+            font-size: 0.6rem;
+            color: var(--new);
+            font-weight: 600;
+            margin-left: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Thèse de Doctorat — IHM</h1>
+            <p class="subtitle">Conception et Impact des Agents Conversationnels Incarnés en Contexte Éducatif</p>
+            <p class="date-update">Mise à jour : 22 janvier 2026 (v17)</p>
+        </header>
+        
+        <!-- Stats Row -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-value" id="percent-display">78%</div>
+                <div class="stat-label">Progression</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="completed-count">21</div>
+                <div class="stat-label">Complétées</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="remaining-count">6</div>
+                <div class="stat-label">Restantes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="words-done">~62k</div>
+                <div class="stat-label">Mots rédigés</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="words-remaining">~22k</div>
+                <div class="stat-label">Mots restants</div>
+            </div>
+        </div>
+        
+        <!-- Recent Activity -->
+        <div class="activity-panel">
+            <div class="activity-title">✅ Activité Récente (22 janvier 2026)</div>
+            <div class="activity-list">
+                <div class="activity-item"><span class="activity-check">✓</span> Ch.5 : Synchronisation avec draft.tex révisé (retours relecteurs)</div>
+                <div class="activity-item"><span class="activity-check">✓</span> Suppression H4 (médiation) — 3 hypothèses conservées</div>
+                <div class="activity-item"><span class="activity-check">✓</span> Discussion : effet halo (Thorndike), Dual Process Theory (Kahneman)</div>
+                <div class="activity-item"><span class="activity-check">✓</span> Discussion : ruptures scriptées, référence Heidegger (zuhanden/vorhanden)</div>
+                <div class="activity-item"><span class="activity-check">✓</span> Nouvelles références bib : thorndike1920, campbell2025, kahneman2013</div>
+            </div>
+        </div>
+        
+        <!-- ⬡ CHANTIER 4.1 PANEL -->
+        <div class="chantier-panel">
+            <div class="chantier-header">
+                <div class="chantier-title-row">
+                    <span class="chantier-icon">📚</span>
+                    <div>
+                        <div class="chantier-title">Chantier 4.1 — État de l'Art</div>
+                        <div class="chantier-subtitle">Arborescence LaTeX · 24 fichiers · ~12 500 mots cible</div>
+                    </div>
+                </div>
+                <div class="chantier-progress-box">
+                    <div class="chantier-progress-value">58%</div>
+                    <div class="chantier-progress-label">14/24 rédigés</div>
+                </div>
+            </div>
+            
+            <div class="chantier-grid">
+                <!-- Section 2.1 ✓ -->
+                <div class="section-card">
+                    <div class="section-header section-done">
+                        <span class="section-num">§2.1</span>
+                        <span class="section-name">Cadre Théorique Apprenant</span>
+                        <span class="section-status">6/6 ✓</span>
+                    </div>
+                    <div class="file-list">
+                        <div class="file-item done"><span class="file-icon">✅</span>2_1.tex <span class="file-badge">intro</span></div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_1_1_SDT_CET.tex</div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_1_2_architecture_interet.tex</div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_1_3_pertinence_valeur.tex</div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_1_4_ICAP.tex</div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_1_5_personnalisation.tex</div>
+                    </div>
+                </div>
+                
+                <!-- Section 2.2 -->
+                <div class="section-card">
+                    <div class="section-header section-todo">
+                        <span class="section-num">§2.2</span>
+                        <span class="section-name">Contexte Histoire</span>
+                        <span class="section-status">0/4</span>
+                    </div>
+                    <div class="file-list">
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_2.tex <span class="file-badge">intro</span></div>
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_2_1_epistemologie_STIM.tex</div>
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_2_2_perception_eleves.tex</div>
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_2_3_pratiques_pedagogiques.tex</div>
+                    </div>
+                </div>
+                
+                <!-- Section 2.3 -->
+                <div class="section-card">
+                    <div class="section-header section-todo">
+                        <span class="section-num">§2.3</span>
+                        <span class="section-name">Interaction & Présence</span>
+                        <span class="section-status">0/5</span>
+                    </div>
+                    <div class="file-list">
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_3.tex <span class="file-badge">intro</span></div>
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_3_1_CTML_TCC.tex</div>
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_3_2_presence_sociale_CASA.tex</div>
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_3_3_embodiment_agence.tex</div>
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_3_4_uncanny_valley.tex</div>
+                    </div>
+                </div>
+                
+                <!-- Section 2.4 -->
+                <div class="section-card">
+                    <div class="section-header section-todo">
+                        <span class="section-num">§2.4</span>
+                        <span class="section-name">IA Génératives</span>
+                        <span class="section-status">0/4</span>
+                    </div>
+                    <div class="file-list">
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_4.tex <span class="file-badge">intro</span></div>
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_4_1_agents_generatifs.tex</div>
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_4_2_personnalisation.tex</div>
+                        <div class="file-item todo"><span class="file-icon">📄</span>2_4_3_hallucinations.tex</div>
+                    </div>
+                </div>
+                
+                <!-- Section 2.5 ✓ -->
+                <div class="section-card">
+                    <div class="section-header section-done">
+                        <span class="section-num">§2.5</span>
+                        <span class="section-name">Illusion Compréhension</span>
+                        <span class="section-status">4/4 ✓</span>
+                    </div>
+                    <div class="file-list">
+                        <div class="file-item done"><span class="file-icon">✅</span>2_5.tex <span class="file-badge">intro</span></div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_5_1_metacognition_IOED.tex</div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_5_2_fluency_heuristic.tex</div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_5_3_autorite_vigilance.tex</div>
+                    </div>
+                </div>
+                
+                <!-- Section 2.6 ✓ -->
+                <div class="section-card">
+                    <div class="section-header section-done">
+                        <span class="section-num">§2.6</span>
+                        <span class="section-name">Synthèse & Problématique</span>
+                        <span class="section-status">4/4 ✓</span>
+                    </div>
+                    <div class="file-list">
+                        <div class="file-item done"><span class="file-icon">✅</span>2_6.tex <span class="file-badge">intro</span></div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_6_1_convergences_tensions.tex</div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_6_2_lacunes_litterature.tex</div>
+                        <div class="file-item done"><span class="file-icon">✅</span>2_6_3_questions_hypotheses.tex</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chantier-sources">
+                <div class="sources-title">📥 Sources à exploiter</div>
+                <div class="sources-grid">
+                    <div class="source-item"><span class="source-icon">📊</span>État_de_lArt__Enseignement_de_lHistoire.pdf</div>
+                    <div class="source-item"><span class="source-icon">📊</span>Rapport__Technologies_Éducatives_pour_lHistoire.pdf</div>
+                    <div class="source-item"><span class="source-icon">📊</span>Rapport_dAnalyse__Research_Paper_Mapper.pdf</div>
+                    <div class="source-item"><span class="source-icon">⚙️</span>IJCCI_extraction.txt (Related Work)</div>
+                    <div class="source-item"><span class="source-icon">⚙️</span>illusion_extraction.txt (Related Work)</div>
+                    <div class="source-item"><span class="source-icon">📁</span>Vault.xlsx (corpus bibliographique)</div>
+                </div>
+            </div>
+            
+            <div class="chantier-next">
+                <div class="next-title">▶ Prochaine étape recommandée</div>
+                <div class="next-content">
+                    <strong>§2.2 Contexte Histoire</strong> — Commencer par <code>2_2_1_epistemologie_STIM.tex</code> : rédiger la comparaison épistémologique Histoire vs STIM, analyse par la Utility Value.
+                </div>
+            </div>
+        </div>
+        
+        <!-- FOCUS: Detailed Remaining Tasks -->
+        <div class="focus-panel">
+            <div class="focus-header">
+                <div>
+                    <div class="focus-title">📋 Tâches Restantes — Détail Complet</div>
+                    <div class="focus-subtitle">Ordre d'exécution recommandé</div>
+                </div>
+            </div>
+            <div class="tasks-remaining-grid" id="tasks-remaining-grid">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-grid">
+            <div class="tasks-column">
+                <h2 class="section-title">🗂️ Roadmap par Phase (26 tâches)</h2>
+                
+                <div class="phase-card">
+                    <div class="phase-header" onclick="togglePhase('phase1')">
+                        <span class="phase-title">Phase 1 : L'Assemblage</span>
+                        <div class="phase-progress">
+                            <div class="phase-bar"><div class="phase-fill" id="phase1-bar"></div></div>
+                            <span class="phase-stats" id="phase1-stats">8/8</span>
+                        </div>
+                    </div>
+                    <div class="phase-content open" id="phase1-content"></div>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-header" onclick="togglePhase('phase2')">
+                        <span class="phase-title">Phase 2 : Intégration & Synthèse</span>
+                        <div class="phase-progress">
+                            <div class="phase-bar"><div class="phase-fill" id="phase2-bar"></div></div>
+                            <span class="phase-stats" id="phase2-stats">9/12</span>
+                        </div>
+                    </div>
+                    <div class="phase-content" id="phase2-content"></div>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-header" onclick="togglePhase('phase3')">
+                        <span class="phase-title">Phase 3 : Finitions</span>
+                        <div class="phase-progress">
+                            <div class="phase-bar"><div class="phase-fill" id="phase3-bar"></div></div>
+                            <span class="phase-stats" id="phase3-stats">4/7</span>
+                        </div>
+                    </div>
+                    <div class="phase-content" id="phase3-content"></div>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item"><div class="legend-color" style="background: #e3f2fd;"></div>[A] Recopie 90-95%</div>
+                    <div class="legend-item"><div class="legend-color" style="background: #fff3e0;"></div>[B] Adaptation</div>
+                    <div class="legend-item"><div class="legend-color" style="background: #f3e5f5;"></div>[C] Rédaction originale</div>
+                    <div class="legend-item"><div class="legend-color" style="background: var(--teal);"></div>Chantier actif</div>
+                </div>
+            </div>
+            
+            <div class="right-panel">
+                <div class="panel-card">
+                    <h3 class="section-title">📖 Chapitres</h3>
+                    <div id="chapters-list"></div>
+                </div>
+                
+                <div class="panel-card">
+                    <h3 class="section-title">📁 Fichiers Clés</h3>
+                    <div style="font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: #555;">
+                        <div style="margin-bottom: 0.3rem;">📄 Main.tex</div>
+                        <div style="margin-bottom: 0.3rem;">📄 Ch2_EtatDeLArt.tex</div>
+                        <div style="margin-bottom: 0.3rem; color: var(--teal);">⬡ sections/2_5/*.tex (4 fichiers)</div>
+                        <div style="margin-bottom: 0.3rem; color: var(--teal);">⬡ sections/2_6/*.tex (4 fichiers)</div>
+                        <div style="margin-bottom: 0.3rem; color: var(--success);">✓ Sommaires etoc opérationnels</div>
+                    </div>
+                </div>
+                
+                <div class="panel-card">
+                    <h3 class="section-title">🔧 Corrections Récentes</h3>
+                    <div style="font-size: 0.75rem; color: #555;">
+                        <div style="margin-bottom: 0.3rem;">• Ch.5 : H4 supprimée, 3 hypothèses</div>
+                        <div style="margin-bottom: 0.3rem;">• Discussion : effet halo + Dual Process</div>
+                        <div style="margin-bottom: 0.3rem;">• Ruptures scriptées + Heidegger</div>
+                        <div style="margin-bottom: 0.3rem;">• 3 nouvelles refs bibliographiques</div>
+                    </div>
+                </div>
+                
+                <div class="panel-card">
+                    <h3 class="section-title">⚙️ Actions</h3>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="exportProgress()">📥 Export</button>
+                        <button class="btn btn-secondary" onclick="resetProgress()">🔄 Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // DEFAULT COMPLETED TASKS - Source of truth (v16 - 5 janvier 2026)
+        const DEFAULT_COMPLETED = ["1.1","1.2","1.3","2.1","2.2","2.3","2.4","3","5.1","5.2","5.3","5.4","5.5","6.1","6.2","6.3b","6.4","7.2","7.3","7.4","7.5"];
+        
+        // TASK DATABASE - VERSION 10 (22 janvier 2026)
+        const TASKS = [
+            // Phase 1
+            { id: "1.1", name: "MemorIA — Contenu Technique", type: "A", section: "3.2", words: 5000, phase: 1, desc: "Recopie intégrale des sections techniques de l'article MemorIA.", source: "MemorIA.pdf", output: "Ch3_Methodologie/3_2_architecture_technique.tex" },
+            { id: "1.2", name: "MemorIA — Contextualisation", type: "C", section: "3.1", words: 2000, phase: 1, desc: "Rédaction originale : contextualisation technologies.", source: "Rédaction originale", output: "Ch3_Methodologie/Ch3_Methodologie.tex" },
+            { id: "1.3", name: "MemorIA — Mise en Œuvre", type: "A", section: "3.3", words: 1500, phase: 1, desc: "Recopie déploiement et étude pilote César.", source: "MemorIA.pdf", output: "Ch3_Methodologie/Ch3_Methodologie.tex" },
+            { id: "2.1", name: "E1 — Données Méthodes", type: "A", section: "4.3-4.5", words: 5400, phase: 1, desc: "Transfert sections Méthode (design 2×2, participants, procédures).", source: "IJCCI-D-25-00049.pdf", output: "Ch4_Experimentation_1.tex" },
+            { id: "2.2", name: "E1 — Données Résultats", type: "A", section: "4.3-4.5", words: 5400, phase: 1, desc: "Transfert sections Résultats (ANCOVA, tableaux, figures).", source: "IJCCI-D-25-00049.pdf", output: "Ch4_Experimentation_1.tex" },
+            { id: "2.3", name: "E2 — Données Complètes", type: "A", section: "5.3-5.4", words: 4800, phase: 1, desc: "Transfert Méthode et Résultats Étude 2 (IOED, MDMT, Godspeed).", source: "illusion_ai_agent_draft.pdf", output: "Ch5_Experimentation_2.tex" },
+            { id: "2.4", name: "Merlin — Description Technique", type: "A", section: "5.3", words: 1200, phase: 1, desc: "Recopie architecture Merlin (Electron, interface).", source: "illusion_ai_agent_draft.pdf", output: "Ch5_Experimentation_2.tex" },
+            { id: "3", name: "Compilation État de l'Art", type: "A", section: "Ch.2", words: null, phase: 1, desc: "Compiler Related Work dans fichiers séparés.", source: "Articles + Vault.xlsx", output: "Ch2_EtatDeLArt/sections/*.tex", blocks: ["4.1", "4.2"] },
+            
+            // Phase 2
+            { id: "4.1", name: "État de l'Art — Réécriture", type: "C", section: "2.1-2.5", words: 12500, phase: 2, desc: "Rédaction analytique §2.1 à §2.5 en intégrant rapports et extractions. Progression : §2.5 et §2.6 complétés (8/24 fichiers).", source: "Rapports + Extractions + Vault", output: "Ch2_EtatDeLArt/sections/2_*/*.tex", blockedBy: "3" },
+            { id: "4.2", name: "État de l'Art — Synthèse", type: "C", section: "2.6", words: 3000, phase: 2, desc: "Synthèse finale : convergences, lacunes, QR. ✓ COMPLÉTÉ", source: "Tâche 4.1", output: "Ch2_EtatDeLArt/sections/2_6/*.tex", blockedBy: "4.1" },
+            { id: "5.1", name: "E1 — Introduction Générale", type: "B", section: "4.2", words: 2400, phase: 2, desc: "Adapter introduction Étude 1.", source: "IJCCI-D-25-00049.pdf", output: "Ch4_Experimentation_1.tex" },
+            { id: "5.2", name: "E1 — Introductions Locales", type: "B", section: "4.3-4.5", words: 3600, phase: 2, desc: "Adapter introductions sous-expériences.", source: "IJCCI-D-25-00049.pdf", output: "Ch4_Experimentation_1.tex" },
+            { id: "5.3", name: "E1 — Discussions Locales", type: "B", section: "4.3-4.5", words: 3600, phase: 2, desc: "Adapter discussions sous-expériences.", source: "IJCCI-D-25-00049.pdf", output: "Ch4_Experimentation_1.tex" },
+            { id: "5.4", name: "E1 — Synthèse Croisée", type: "B", section: "4.6-4.7", words: 1800, phase: 2, desc: "Adapter discussion croisée.", source: "IJCCI-D-25-00049.pdf", output: "Ch4_Experimentation_1.tex" },
+            { id: "5.5", name: "E2 — Introduction", type: "B", section: "5.2", words: 1800, phase: 2, desc: "Adapter introduction Étude 2.", source: "illusion_ai_agent_draft.pdf", output: "Ch5_Experimentation_2.tex" },
+            { id: "6.1", name: "E2 — Discussion", type: "A", section: "5.5", words: 3000, phase: 2, desc: "Discussion Étude 2 synchronisée avec draft révisé : effet halo, Dual Process Theory, ruptures scriptées.", source: "draft.tex (révisé)", output: "Ch5_Experimentation_2.tex" },
+            { id: "6.2", name: "Introduction Générale", type: "C", section: "Ch.1", words: 6000, phase: 2, desc: "Rédaction Ch.1 : contexte, problématique, QR.", source: "Synthèse", output: "Ch1_Introduction.tex" },
+            { id: "6.3b", name: "E3 — Protocole Perspectives", type: "B", section: "6.2", words: 2500, phase: 2, desc: "Intégrer protocole E3 dans perspectives.", source: "Protocole CER E3", output: "Ch6_Conclusion.tex" },
+            { id: "6.4", name: "Conclusion & Perspectives", type: "C", section: "Ch.6", words: 3000, phase: 2, desc: "Rédaction Ch.6 : bilan, réponses QR, perspectives.", source: "Ch.4 + Ch.5", output: "Ch6_Conclusion.tex" },
+            
+            // Phase 3
+            { id: "7.1", name: "Révision Cohérence", type: "B", section: "Ensemble", words: null, phase: 3, desc: "Harmonisation stylistique, transitions, footnotes outils.", source: "Manuscrit", output: "*.tex" },
+            { id: "7.2", name: "Parties Préliminaires", type: "C", section: "Préliminaire", words: null, phase: 3, desc: "Résumé FR, Abstract EN, glossaire 46 acronymes.", source: "Original", output: "frontmatter/*.tex" },
+            { id: "7.3", name: "Annexes", type: "A", section: "Annexes", words: null, phase: 3, desc: "Questionnaires, prompts, matériel, éthique.", source: "Fichiers annexes", output: "appendices/*.tex" },
+            { id: "7.4", name: "Analyse Répétitions", type: "B", section: "Ensemble", words: null, phase: 3, desc: "Détecter redondances intra/inter-chapitres.", source: "Manuscrit", output: "Rapport + corrections" },
+            { id: "7.5", name: "Renvois aux Annexes", type: "B", section: "Ensemble", words: null, phase: 3, desc: "Vérifier \\ref{} aux annexes.", source: "Manuscrit", output: "chapters/*.tex" },
+            { id: "8.1", name: "Vérification Citations", type: "A", section: "Ensemble", words: null, phase: 3, desc: "Contrôle \\cite{} vs entrées .bib.", source: ".bib", output: "bib/*.bib" },
+            { id: "8.2", name: "Relecture Finale", type: "B", section: "Ensemble", words: null, phase: 3, desc: "Orthographe, grammaire, mise en page.", source: "Manuscrit", output: "*.tex" }
+        ];
+        
+        const CHAPTERS = [
+            { num: 1, name: "Introduction Générale", tasks: ["6.2"], totalWords: 6000 },
+            { num: 2, name: "État de l'Art", tasks: ["3", "4.1", "4.2"], totalWords: 15500 },
+            { num: 3, name: "Plateforme MemorIA", tasks: ["1.1", "1.2", "1.3"], totalWords: 8500 },
+            { num: 4, name: "Étude 1 : Interactivité", tasks: ["2.1", "2.2", "5.1", "5.2", "5.3", "5.4"], totalWords: 22200 },
+            { num: 5, name: "Étude 2 : Design Agent", tasks: ["2.3", "2.4", "5.5", "6.1"], totalWords: 10800 },
+            { num: 6, name: "Conclusion & Perspectives", tasks: ["6.4", "6.3b"], totalWords: 5500 }
+        ];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeProgress();
+            renderAll();
+        });
+        
+        function initializeProgress() {
+            const version = localStorage.getItem('thesisProgressVersion');
+            if (version !== 'v17') {
+                localStorage.removeItem('thesisProgressV2');
+                localStorage.setItem('thesisProgressVersion', 'v17');
+            }
+            TASKS.forEach(t => { t.done = DEFAULT_COMPLETED.includes(t.id); });
+            const saved = localStorage.getItem('thesisProgressV2');
+            if (saved) {
+                try {
+                    const states = JSON.parse(saved);
+                    TASKS.forEach(t => { if (states[t.id] !== undefined) t.done = states[t.id]; });
+                } catch(e) { console.error('Failed to load progress', e); }
+            }
+            saveProgress();
+        }
+        
+        function saveProgress() {
+            const states = {};
+            TASKS.forEach(t => states[t.id] = t.done);
+            localStorage.setItem('thesisProgressV2', JSON.stringify(states));
+        }
+        
+        function renderAll() {
+            renderRemainingTasks();
+            renderPhaseTasks();
+            renderChapters();
+            updateStats();
+        }
+        
+        function renderRemainingTasks() {
+            const remaining = TASKS.filter(t => !t.done);
+            const container = document.getElementById('tasks-remaining-grid');
+            const sorted = [...remaining].sort((a, b) => {
+                const aBlocked = a.blockedBy && !TASKS.find(x => x.id === a.blockedBy)?.done;
+                const bBlocked = b.blockedBy && !TASKS.find(x => x.id === b.blockedBy)?.done;
+                if (aBlocked && !bBlocked) return 1;
+                if (!aBlocked && bBlocked) return -1;
+                return 0;
+            });
+            let orderNum = 1;
+            container.innerHTML = sorted.map(t => {
+                const isBlocked = t.blockedBy && !TASKS.find(x => x.id === t.blockedBy)?.done;
+                const isNext = orderNum === 1 && !isBlocked;
+                const currentOrder = isBlocked ? '—' : orderNum++;
+                let cardClass = 'task-card';
+                if (isBlocked) cardClass += ' blocked';
+                else if (isNext) cardClass += ' next';
+                return `
+                    <div class="${cardClass}">
+                        <div class="task-card-header">
+                            <span class="task-card-id"><span class="order-num ${isBlocked ? 'blocked' : ''}">${currentOrder}</span>${t.id}</span>
+                            <div class="task-card-badges">
+                                ${isNext ? '<span class="badge badge-next">Prochaine</span>' : ''}
+                                ${isBlocked ? '<span class="badge badge-blocked">Bloqué par ' + t.blockedBy + '</span>' : ''}
+                                <span class="badge badge-type-${t.type.toLowerCase()}">[${t.type}]</span>
+                            </div>
+                        </div>
+                        <div class="task-card-name">${t.name}</div>
+                        <div class="task-card-desc">${t.desc}</div>
+                        <div class="task-card-meta">
+                            <span class="meta-label">Section</span><span class="meta-value">§${t.section}</span>
+                            <span class="meta-label">Mots</span><span class="meta-value words">${t.words ? t.words.toLocaleString('fr-FR') : 'Variable'}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderPhaseTasks() {
+            [1, 2, 3].forEach(phase => {
+                const container = document.getElementById(`phase${phase}-content`);
+                const phaseTasks = TASKS.filter(t => t.phase === phase);
+                container.innerHTML = phaseTasks.map(t => {
+                    const isNext = !t.done && isNextTask(t);
+                    let itemClass = 'task-item';
+                    if (t.done) itemClass += ' done';
+                    else if (isNext) itemClass += ' next';
+                    return `
+                        <div class="${itemClass}">
+                            <span class="task-id">${t.id}</span>
+                            <span class="task-name">${t.name}</span>
+                            <span class="task-type type-${t.type.toLowerCase()}">[${t.type}]</span>
+                            <span class="task-status ${t.done ? 'status-complete' : 'status-pending'}" onclick="toggleTask('${t.id}')">${t.done ? '✓' : '○'}</span>
+                        </div>
+                    `;
+                }).join('');
+            });
+        }
+        
+        function isNextTask(task) {
+            const remaining = TASKS.filter(t => !t.done);
+            const unblocked = remaining.filter(t => !t.blockedBy || TASKS.find(x => x.id === t.blockedBy)?.done);
+            return unblocked[0]?.id === task.id;
+        }
+        
+        function renderChapters() {
+            const container = document.getElementById('chapters-list');
+            container.innerHTML = CHAPTERS.map(ch => {
+                const doneTasks = ch.tasks.filter(id => TASKS.find(t => t.id === id)?.done).length;
+                const percent = Math.round((doneTasks / ch.tasks.length) * 100);
+                return `
+                    <div class="chapter-item">
+                        <span class="chapter-number">${ch.num}</span>
+                        <div class="chapter-info">
+                            <div class="chapter-name">${ch.name}</div>
+                            <div class="chapter-bar"><div class="chapter-fill" style="width: ${percent}%"></div></div>
+                        </div>
+                        <span class="chapter-percent">${percent}%</span>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function updateStats() {
+            const done = TASKS.filter(t => t.done).length;
+            const total = TASKS.length;
+            const percent = Math.round((done / total) * 100);
+            document.getElementById('percent-display').textContent = percent + '%';
+            document.getElementById('completed-count').textContent = done;
+            document.getElementById('remaining-count').textContent = total - done;
+            const wordsDone = TASKS.filter(t => t.done && t.words).reduce((sum, t) => sum + t.words, 0);
+            const wordsRemaining = TASKS.filter(t => !t.done && t.words).reduce((sum, t) => sum + t.words, 0);
+            document.getElementById('words-done').textContent = '~' + Math.round(wordsDone / 1000) + 'k';
+            document.getElementById('words-remaining').textContent = '~' + Math.round(wordsRemaining / 1000) + 'k';
+            [1, 2, 3].forEach(phase => {
+                const phaseTasks = TASKS.filter(t => t.phase === phase);
+                const phaseDone = phaseTasks.filter(t => t.done).length;
+                const phasePercent = Math.round((phaseDone / phaseTasks.length) * 100);
+                document.getElementById(`phase${phase}-stats`).textContent = `${phaseDone}/${phaseTasks.length}`;
+                document.getElementById(`phase${phase}-bar`).style.width = `${phasePercent}%`;
+            });
+        }
+        
+        function toggleTask(id) {
+            const task = TASKS.find(t => t.id === id);
+            if (task) { task.done = !task.done; saveProgress(); renderAll(); }
+        }
+        
+        function togglePhase(phaseId) {
+            document.getElementById(phaseId + '-content').classList.toggle('open');
+        }
+        
+        function exportProgress() {
+            const data = { date: new Date().toISOString(), version: 'v17', tasks: TASKS.map(t => ({ id: t.id, done: t.done })) };
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+            a.download = 'thesis_progress_' + new Date().toISOString().split('T')[0] + '.json'; a.click();
+        }
+        
+        function resetProgress() {
+            if (confirm('Réinitialiser aux valeurs par défaut ?')) {
+                localStorage.removeItem('thesisProgressV2');
+                localStorage.setItem('thesisProgressVersion', 'v17');
+                TASKS.forEach(t => t.done = DEFAULT_COMPLETED.includes(t.id));
+                saveProgress(); renderAll();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thèse de Doctorat
+% Conception et Impact des Agents Conversationnels Incarnés
+% en Contexte Éducatif
+% Auteur : Antoine OGER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,a4paper,twoside,openright]{book}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1. ENCODAGE ET LANGUES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,french]{babel}
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2. MISE EN PAGE ET TYPOGRAPHIE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm, headheight=15.4pt]{geometry}
+\usepackage{setspace}
+\setstretch{1.5}
+
+% Éviter les dépassements de texte dans les marges
+\emergencystretch=3em
+\tolerance=1000
+\hbadness=10000
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\usepackage{tocloft}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SOMMAIRES DE CHAPITRES (etoc)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{etoc}
+\etocsettocdepth{subsection}
+
+% Style du sommaire local de chapitre
+\newcommand{\sommairechapitre}{%
+  \begingroup
+  \parindent 0pt
+  \baselineskip 14pt
+  \leftskip 0cm
+  \rightskip 0.5cm
+  \etocsetstyle{section}
+    {}
+    {\leavevmode\leftskip 0cm\relax}
+    {\bfseries\normalsize\etocnumber\hspace{0.5em}\etocname\dotfill\etocpage\par\vspace{2pt}}
+    {}
+  \etocsetstyle{subsection}
+    {}
+    {\leavevmode\leftskip 0.75cm\relax}
+    {\normalsize\etocnumber\hspace{0.5em}\etocname\dotfill\etocpage\par}
+    {}
+  \etocsettocstyle{\noindent\textbf{\large Sommaire du chapitre}\par\vspace{0.5em}\hrule\vspace{0.5em}}{\vspace{0.5em}\hrule\vspace{1.5em}}
+  \localtableofcontents
+  \endgroup
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3. MATHÉMATIQUES ET SCIENCES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 4. GRAPHIQUES, TABLEAUX ET CODE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{{images/}}
+
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{threeparttable}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 5. BIBLIOGRAPHIE (Configuration NATBIB)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[round, authoryear]{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 6. NAVIGATION ET LIENS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[colorlinks=true,
+            linkcolor=blue,
+            citecolor=blue,
+            urlcolor=blue,
+            bookmarks=true,
+            bookmarksopen=true]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 7. GLOSSAIRE (Version manuelle - tableau simple)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossaire inclus directement dans le document via \input
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INFORMATIONS DU DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Conception et Impact des Agents Conversationnels Incarnés en Contexte Éducatif : \\
+\vspace{0.5cm}
+Étude de l'Intérêt et de l'Illusion de Compréhension chez les Élèves du Secondaire}
+
+\author{Antoine OGER}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMMANDES PERSONNALISÉES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\citef}[1]{\cite{#1}}
+\newcommand{\urlfootnote}[1]{\footnote{\url{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DÉBUT DU DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% --- PARTIES PRÉLIMINAIRES ---
+\input{frontmatter/PageDeGarde.tex}
+
+\frontmatter
+\input{frontmatter/Remerciements.tex}
+\input{frontmatter/Resume_FR.tex}
+\input{frontmatter/Abstract_EN.tex}
+
+% Table des matières
+\tableofcontents
+\clearpage
+
+% Listes
+\listoffigures
+\addcontentsline{toc}{chapter}{Liste des figures}
+\clearpage
+
+\listoftables
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\clearpage
+
+\input{frontmatter/Glossaire.tex}
+\clearpage
+
+% --- CORPS PRINCIPAL ---
+\mainmatter
+
+\input{chapters/Ch1_Introduction/Ch1_Introduction_v2.tex}
+\input{chapters/Ch2_EtatDeLArt/Ch2_EtatDeLArt.tex}
+\input{chapters/Ch3_Methodologie/Ch3_Methodologie.tex}
+\input{chapters/Ch4_Experimentation_1/Ch4_Experimentation_1_v3.tex}
+\input{chapters/Ch5_Experimentation_2/Ch5_Experimentation_2_v2.tex}
+% \input{chapters/Ch6_Conclusion/Ch6_Discussion.tex}  % Supprimé : discussions locales suffisantes (remarque reviewer)
+\input{chapters/Ch7_Conclusion/Ch7_Conclusion.tex}
+
+% --- PARTIES FINALES ---
+\bibliographystyle{apalike} 
+\bibliography{bib/references,bib/memoria_references,bib/ijcci_references,bib/ioed_references,bib/main_bibliography}
+\addcontentsline{toc}{chapter}{Bibliographie}
+
+% Annexes
+\appendix
+\input{appendices/Annexe_A_Questionnaires.tex}
+\input{appendices/Annexe_B_Prompts.tex}
+\input{appendices/Annexe_C_Materiel_Pedagogique.tex}
+\input{appendices/Annexe_D_Ethique.tex}
+
+\end{document}

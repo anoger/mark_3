@@ -1,0 +1,85 @@
+% Architecture Technique Détaillée de MemorIA
+% Contenu intégré depuis l'article Computer Animation & Virtual Worlds - 2025 - Oger - MemorIA
+% Type [A] - Recopie Technique avec conservation 90-95% du contenu
+
+\subsection{Vue d'ensemble de l'architecture}
+\label{subsec:architecture_overview}
+
+L'architecture de MemorIA implémente un pipeline de traitement asynchrone en flux continu (\textit{streaming}) afin de minimiser la latence et d'assurer une interaction fluide. Le système utilise des APIs REST (Representational State Transfer) pour ses services principaux tout en maintenant des flux de données continus entre les composants. La Figure~\ref{fig:memoria_pipeline} représente l'architecture système de MemorIA et met en évidence les interconnexions entre les différents modules ainsi que leurs interactions.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/ch3/memoria_pipeline_architecture.png}
+    \caption{Architecture du pipeline de MemorIA : du traitement de la requête utilisateur à la synthèse de l'animation faciale. Le système combine le traitement linguistique GPT-4, la synthèse vocale, l'animation Audio2Face, et le transfert d'émotions pour générer des réponses interactives.}
+    \label{fig:memoria_pipeline}
+\end{figure}
+
+Le processus débute par la capture de la parole de l'utilisateur via un microphone, où le flux audio est transmis en segments de 30 ms à l'API Whisper d'OpenAI\footnote{\url{https://openai.com/index/whisper/}}. Cette approche en flux continu permet à la transcription de commencer avant que l'utilisateur n'ait terminé de parler, réduisant ainsi la latence globale. Whisper a été spécifiquement sélectionné pour sa robustesse dans les environnements de classe, gérant les variations de niveaux sonores et les accents grâce à son entraînement multilingue.
+
+La transcription est continuellement transmise à GPT-4\footnote{\url{https://openai.com/index/gpt-4/}} via l'API d'OpenAI en utilisant une ingénierie de prompts spécifique (co-conçue avec les enseignants) afin d'assurer des réponses historiquement précises et pédagogiquement appropriées. La structure du prompt, détaillée en Annexe~\ref{annexe:prompts}, combine le contexte historique, des directives pédagogiques, et des contraintes d'interaction pour façonner les réponses de l'agent. Cette ingénierie inclut des définitions de rôles soigneusement élaborées, des limites de connaissances historiques, et des directives comportementales spécifiques correspondant à la figure historique représentée.
+
+Les paramètres du modèle sont finement ajustés pour le dialogue éducatif : la température est fixée à 0,7, équilibrant créativité et cohérence — des valeurs plus basses produiraient des réponses plus déterministes, tandis que des valeurs plus élevées pourraient introduire une variabilité inappropriée. Le paramètre \texttt{top\_p} (échantillonnage par noyau) est fixé à 0,95, ce qui signifie que le modèle considère les tokens comprenant les 95\% supérieurs de la masse de probabilité, aidant à maintenir des réponses cohérentes tout en conservant une sonorité naturelle. Le système maintient un historique de conversation de 4096 tokens, permettant une conscience contextuelle tout en gérant les contraintes de mémoire.
+
+Les réponses générées sont immédiatement transmises en flux continu à l'API d'ElevenLabs\footnote{\url{https://elevenlabs.io/}} pour la synthèse vocale. Lors de l'utilisation du clonage vocal historique, le système utilise les paramètres de stabilité (\textit{stability}) et de similarité (\textit{similarity}), tous deux variant de 0 à 1 : la stabilité (fixée à 0,75) contrôle la cohérence des caractéristiques vocales sur des énoncés plus longs, tandis que la similarité (fixée à 0,85) détermine dans quelle mesure la voix synthétisée correspond aux enregistrements de référence. Ces paramètres ont été testés empiriquement pour équilibrer authenticité et clarté.
+
+\subsection{Synthèse vocale et animation faciale}
+\label{subsec:voice_synthesis_facial_animation}
+
+Le pipeline d'animation faciale commence par le transfert depuis ElevenLabs vers Audio2Face. Le flux audio produit par ElevenLabs est traité via le composant \textit{Streaming Audio Player} d'Audio2Face, qui reçoit les données audio en temps réel via le protocole gRPC (Google Remote Procedure Call). Cette intégration nécessite des considérations techniques spécifiques : la sortie MP3 d'ElevenLabs est convertie en format WAV en flux continu, comme requis par Audio2Face, tout en maintenant des taux d'échantillonnage et des tailles de tampon cohérents entre les deux systèmes. Le flux audio est transmis en segments de 30 ms, permettant la génération d'animations faciales en temps réel tout en minimisant la latence. Le \textit{Streaming Audio Player} se connecte temporellement à l'instance principale d'Audio2Face, assurant une synchronisation précise entre le flux audio et les animations faciales générées.
+
+Le système d'expression émotionnelle d'Audio2Face\footnote{\url{https://build.nvidia.com/nvidia/audio2face}} est configuré avec les paramètres suivants :
+
+\begin{itemize}
+    \item \textbf{Plage de détection d'émotion} (\textit{Emotion detection range}) : fixée à 1,4 seconde, ce paramètre définit la taille de chaque segment audio utilisé pour prédire une seule émotion par image clé. Ce réglage a été choisi pour assurer une détection d'émotion stable tout en maintenant la réactivité.
+    
+    \item \textbf{Intervalle d'image clé} (\textit{Keyframe interval}) : configuré à 1 seconde, cela détermine l'espacement temporel entre les images clés automatisées adjacentes, équilibrant une animation fluide avec l'efficacité computationnelle.
+    
+    \item \textbf{Force émotionnelle} (\textit{Emotion strength}) : fixée à 0,6, ce paramètre contrôle l'intensité des émotions générées par rapport à l'état d'émotion neutre. À travers nos tests, nous avons constaté que cette valeur offre des animations expressives tout en évitant l'exagération.
+    
+    \item \textbf{Lissage} (\textit{Smoothing}) : fixé à 2, cela définit le nombre d'images clés voisines utilisées pour le lissage émotionnel, assurant des transitions naturelles entre les états émotionnels.
+    
+    \item \textbf{Émotions maximales} (\textit{Max emotions}) : limité à 6, ce paramètre établit un plafond strict sur la quantité d'émotions que Audio2Emotion engagera simultanément, avec des émotions priorisées par leur force. Cela empêche l'expression émotionnelle de devenir visuellement confuse.
+\end{itemize}
+
+Nous exploitons également la fonctionnalité « Émotion Préférée » (\textit{Preferred Emotion}) d'Audio2Face, implémentée comme une amélioration optionnelle dans notre architecture. Cette fonctionnalité permet de définir un état émotionnel de base pour chaque agent, qui est ensuite modulé par les émotions détectées dans le flux audio, comme illustré dans la Figure~\ref{fig:audio2face_interface}. Lorsqu'elle est activée, la Force Émotionnelle pour l'émotion préférée est soigneusement calibrée pour s'assurer que l'état émotionnel de base reste suffisamment subtil pour permettre des variations naturelles dans les expressions faciales.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/ch3/audio2face_interface.png}
+    \caption{Interface d'Audio2Face montrant les paramètres d'émotion en temps réel pendant l'interaction (gauche) aux côtés du portrait animé final rendu avec le modèle de mouvement du premier ordre (droite).}
+    \label{fig:audio2face_interface}
+\end{figure}
+
+Le système utilise une extension Audio2Face personnalisée que nous avons développée pour faire le pont entre les animations 3D d'Audio2Face et les exigences de portrait 2D de MemorIA. Cette extension capture le rendu de la fenêtre d'affichage (\textit{viewport}) d'Audio2Face et le transforme en un flux d'images 2D qui sert d'entrée pour le modèle de mouvement du premier ordre (FOMM). Cette conversion maintient une résolution constante de 256 × 256 pixels — bien que des résolutions plus élevées aient été testées, elles ont introduit une latence inacceptable dans le pipeline temps réel.
+
+L'ensemble du système utilise un traitement parallèle et une gestion de tampons pour maintenir l'objectif de temps de réponse de 4 secondes. Chaque composant fonctionne indépendamment :
+
+\begin{enumerate}
+    \item La reconnaissance vocale s'exécute en continu avec un tampon de 300 ms.
+    \item GPT-4 traite le texte transcrit en segments, les réponses commençant à être générées après la première phrase significative.
+    \item La synthèse vocale commence dès que la première phrase est complète.
+    \item L'animation faciale démarre avec un délai de 700 ms pour assurer un démarrage de mouvement fluide.
+\end{enumerate}
+
+Ces temporisations résultent en la répartition de performance suivante dans des conditions réseau standard (100 Mbps), comme illustré dans le Tableau~\ref{tab:memoria_latency} :
+
+\begin{table}[htbp]
+\centering
+\caption{Répartition du temps de réponse global de MemorIA par module.}
+\label{tab:memoria_latency}
+\begin{tabular}{lc}
+\hline
+\textbf{Module} & \textbf{Durée moyenne (ms)} \\
+\hline
+Reconnaissance vocale (Whisper) & 300 \\
+Génération de langage (GPT-4) & 2500 \\
+Synthèse vocale (ElevenLabs) & 500 \\
+Animation faciale (Audio2Face + FOMM) & 700 \\
+\textbf{Latence totale approximative} & \textbf{4000 ms (4 s)} \\
+\hline
+\end{tabular}
+\end{table}
+
+Le temps de réponse de quatre secondes représente la performance optimale réalisable avec les contraintes technologiques actuelles. Cette latence provient principalement des temps de traitement cumulés des services IA externes : la reconnaissance vocale de Whisper, la génération de langage de GPT-4, et la synthèse vocale d'ElevenLabs. Bien que des composants individuels tels qu'Audio2Face atteignent des performances quasi temps réel, la nature séquentielle de ces opérations et notre dépendance aux services IA basés sur le cloud établissent cette latence de base. Le système maintient ce profil de performance sur du matériel grand public (NVIDIA RTX 4090 Mobile, 90W TGP) tout en assurant une sortie visuelle fluide à 25 FPS.
+
+Pour la représentation visuelle, nous avons utilisé Midjourney V5\footnote{\url{https://www.midjourney.com/explore}} pour générer des portraits qui sont plausibles mais stylisés. Ce choix de stylisation a été motivé par la limitation de résolution de FOMM et la nécessité d'éviter l'effet de vallée dérangeante (\textit{uncanny valley})~\citep{mori2012}. L'approche stylisée aide à atténuer les artefacts visuels potentiels qui pourraient être plus dérangeants dans un rendu photoréaliste à cette résolution.

@@ -1,0 +1,25 @@
+% ============================================================================
+% Sous-section 2.3.2 : Fondements Cognitifs de l'Apprentissage avec Agents
+% ============================================================================
+% Sources : IJCCI_extraction (§2.5), Rapport Analyse, illusion_extraction
+% Calibrage : ~600 mots
+% Type : Révision de 2_3_1_CTML_TCC.tex (recentré, évite répétitions avec 2.1)
+% ============================================================================
+
+\subsection{Fondements Cognitifs~: Contraintes et Principes de Design}
+\label{subsec:fondements_cognitifs}
+
+L'efficacité des agents pédagogiques est contrainte par l'architecture cognitive humaine. Deux cadres théoriques informent directement leur conception~: la Théorie de la Charge Cognitive et la Théorie Cognitive de l'Apprentissage Multimédia.
+
+La mémoire de travail constitue le goulot d'étranglement de l'apprentissage~\citep{sweller2011cognitive}. Sa capacité limitée impose de distinguer trois types de charge~: la charge \textit{intrinsèque} (complexité du contenu), la charge \textit{extrinsèque} (inefficacités de présentation), et la charge \textit{pertinente} (effort d'apprentissage productif). Pour les agents pédagogiques, cette distinction a une implication directe~: les éléments de design non fonctionnels peuvent constituer une charge extrinsèque susceptible de compromettre l'apprentissage.
+
+Un agent visuellement complexe --- animations élaborées, environnement 3D détaillé, expressions faciales sophistiquées --- peut paradoxalement nuire à l'apprentissage s'il détourne des ressources cognitives du contenu éducatif. Les méta-analyses confirment ce risque~: les agents 2D surpassent les agents 3D sur les mesures d'apprentissage~\citep{castroalonso2021effectiveness}. Ce résultat contre-intuitif s'explique par le coût cognitif du réalisme~: le traitement d'un environnement 3D immersif consomme des ressources au détriment du contenu.
+
+La Théorie Cognitive de l'Apprentissage Multimédia~\citep{mayer2014cambridge} postule l'existence de deux canaux de traitement distincts~: visuel-pictural et auditif-verbal. Le \textit{principe de modalité} qui en découle stipule que l'apprentissage est favorisé lorsque les explications verbales sont présentées sous forme audio plutôt que textuelle. En déléguant l'information verbale au canal auditif, le concepteur libère le canal visuel pour les éléments graphiques pertinents.
+
+Ce principe fournit la justification théorique des agents vocaux~: un agent qui \textit{parle} plutôt qu'il n'affiche du texte permet une répartition optimale de la charge entre les canaux. Les voix humaines s'avèrent plus efficaces que les voix synthétiques, bien que cet écart se réduise avec les progrès technologiques. Le \textit{principe de personnalisation} complète cette recommandation~: un style conversationnel surpasse un style formel.
+
+Les gestes de l'agent constituent un cas particulier~: ils peuvent soit faciliter l'apprentissage en guidant l'attention, soit le compromettre en ajoutant une charge extrinsèque. Les données empiriques révèlent des effets modérés des gestes sur le transfert proche et la rétention~\citep{davis2018impact}. Ces effets sont conditionnés par la \textit{congruence sémantique}~: les gestes doivent être alignés avec le contenu verbal. Un geste déictique pointant vers un élément pertinent du graphique facilite l'intégration~; un geste générique non relié au contenu constitue une distraction.
+
+Ces résultats convergent vers un paradoxe apparent~: les agents les plus efficaces ne sont pas les plus réalistes, mais les plus parcimonieux. Un agent doit fournir suffisamment d'indices pour activer l'engagement social (voir section suivante), sans surcharger le système cognitif par des éléments non fonctionnels. Cette recommandation de parcimonie entre en tension avec l'évolution technologique~: les capacités croissantes de rendu réaliste ne garantissent pas une efficacité pédagogique accrue. La question n'est pas \og que peut-on techniquement réaliser?\fg{} mais \og qu'est-ce qui sert effectivement l'apprentissage?\fg{}.
+

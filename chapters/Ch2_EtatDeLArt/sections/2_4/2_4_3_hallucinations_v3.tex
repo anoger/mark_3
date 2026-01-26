@@ -1,0 +1,20 @@
+% ============================================================================
+% Sous-section 2.4.3 : Fiabilité et Hallucinations — Le Défi Épistémique (V3)
+% ============================================================================
+% Corrections appliquées :
+% - Lacune 7 : Simplification du passage sur fluidité (détail en 2.5.2)
+% - Lacune 17 : Ref forward déjà explicite - conservée
+% ============================================================================
+
+\subsection{Fiabilité et Hallucinations~: le Défi Épistémique}
+\label{subsec:hallucinations}
+
+La fluidité conversationnelle des LLM masque une faille intrinsèque~: leur propension à générer des informations factuellement incorrectes présentées avec une confiance apparente. Ce phénomène, qualifié d'\og hallucination\fg{}, représente un défi épistémique majeur pour les applications éducatives.
+
+Les LLM sont des modèles probabilistes qui prédisent le mot suivant le plus probable étant donné le contexte. Cette nature stochastique implique qu'ils ne \og connaissent\fg{} pas les faits au sens humain~: ils génèrent des séquences statistiquement plausibles~\citep{zhang2025sirens}. Une taxonomie des hallucinations distingue les \textit{hallucinations factuelles} (assertions fausses sur le monde), les \textit{hallucinations de fidélité} (déformations de l'information source), et les \textit{hallucinations d'entrée} (fabrication d'éléments non présents dans la requête). Dans un contexte éducatif, chaque type présente des risques spécifiques~: date erronée, citation inventée, personnage historique attribué à la mauvaise période.
+
+L'enseignement de l'Histoire présente une vulnérabilité particulière à ces hallucinations. La discipline repose sur des faits précis --- dates, lieux, protagonistes --- dont l'exactitude est vérifiable. Or, les LLM excellent dans la production de récits plausibles et cohérents~; ils peuvent générer une narration parfaitement fluide qui contient néanmoins des erreurs factuelles. Cette tension est problématique car la fluidité du discours constitue un signal de crédibilité --- mécanisme que nous analysons en détail dans la section suivante (cf. \S\ref{subsec:fluency_heuristic}). Le LLM, en produisant un discours maximalement fluide, maximise cette heuristique --- indépendamment de la véracité de ce qu'il affirme.
+
+Les avancées technologiques soulèvent plusieurs défis connexes. L'engagement des élèves peut fluctuer en raison d'effets de nouveauté~\citep{fryer2019bots}, tandis que les questions de fiabilité, de biais, de confidentialité et d'intégrité académique nécessitent une attention particulière~\citep{labadze2023role, dempere2023impact, berson2024childrens}. Au-delà de l'établissement de lignes directrices pour l'intégration de l'IA en éducation, des opportunités de recherche existent pour examiner comment l'interaction verbale avec des agents pourrait compléter les pratiques pédagogiques actuelles. La modalité orale, en tirant parti des dynamiques naturelles de la classe, pourrait créer des patterns d'engagement différents comparés aux interactions textuelles individuelles~\citep{moreno2007interactive}.
+
+Ces considérations informent directement notre programme expérimental. L'Étude~2, en exposant les participants à un agent capable de produire des informations historiques incorrectes mais présentées avec fluidité, teste précisément ce risque~: la fluidité de l'agent conduit-elle les élèves à accepter des informations fausses et à surestimer leur propre compréhension?

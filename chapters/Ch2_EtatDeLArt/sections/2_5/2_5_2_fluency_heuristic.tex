@@ -1,0 +1,20 @@
+% ============================================================================
+% Sous-section 2.5.2 : L'Heuristique de Fluidité (Fluency Heuristic)
+% ============================================================================
+% Sources : illusion_extraction (§2.2.1, §2.2.2), illusion_ai_agent_draft
+% Calibrage : ~550 mots
+% Type : C (Rédaction originale)
+% ============================================================================
+
+\subsection{L'Heuristique de Fluidité}
+\label{subsec:fluency_heuristic}
+
+Le mécanisme central de l'illusion de compréhension réside dans ce que la littérature désigne par \textit{processing fluency}~: l'information facile à percevoir et à traiter cognitivement est vécue comme familière~\citep{reber1999effects}. Cette facilité de traitement est alors attribuée par erreur à la propre maîtrise du sujet par l'apprenant plutôt qu'aux qualités de la présentation. L'heuristique de fluidité constitue un raccourci cognitif par lequel nous jugeons plus vraie, plus crédible et mieux comprise l'information qui \og passe bien\fg{}.
+
+La simple facilité de perception d'un énoncé --- police lisible, articulation claire, formulation syntaxiquement simple --- augmente sa crédibilité perçue, indépendamment de sa véracité objective. L'individu interprète la facilité cognitive comme un signal de familiarité, et la familiarité comme un indice de vérité. Dans le contexte des agents conversationnels alimentés par LLM, cette heuristique prend une dimension particulière~: ces modèles possèdent des caractéristiques techniques qui maximisent la fluidité de traitement --- discours instantané, parfaitement structuré et linguistiquement fluide~\citep{shanahan2024talking}. Cette double fluidité --- linguistique et auditive lorsque couplée à une synthèse vocale --- crée les conditions idéales pour que l'heuristique opère.
+
+Une variante pertinente est l'\textit{instructor fluency effect}, qui décrit comment les comportements non-verbaux de l'enseignant --- dynamisme, contact visuel, fluidité verbale --- peuvent biaiser les jugements d'apprentissage~\citep{toftness2018instructor}. Les apprenants confondent la qualité de la délivrance pédagogique avec la qualité de leur propre apprentissage, rapportant une confiance élevée sans gains de performance correspondants. La présence visuelle d'un instructeur peut augmenter la satisfaction et l'apprentissage perçu tout en détournant l'attention du contenu~\citep{wilson2018instructor}. L'apprenant se trouve dans une situation paradoxale où son expérience subjective positive masque un apprentissage objectivement dégradé.
+
+Au-delà de la compréhension conceptuelle, l'heuristique de fluidité peut générer une \og illusion d'acquisition de compétence\fg{}~: l'observation passive d'une démonstration peut conduire l'observateur à confondre la fluidité de traitement visuel avec sa propre capacité à exécuter la tâche~\citep{kardas2018illusion}. Par analogie, un apprenant qui observe un agent expliquer un phénomène avec aisance peut confondre la clarté de la présentation avec sa propre maîtrise du sujet.
+
+La convergence de ces mécanismes crée un risque métacognitif majeur. L'interaction conversationnelle tend à augmenter la crédibilité perçue et à réduire la détection des inexactitudes par rapport au texte statique, car elle active des heuristiques sociales qui diminuent la vigilance critique~\citep{anderl2024conversational}. Même lorsque le contenu n'est pas jugé globalement plus crédible, il est souvent perçu comme plus clair et plus engageant --- une qualité qui peut conduire à une acceptation non critique~\citep{huschens2023unambiguous}. Cette configuration favorise une forme de \og paresse métacognitive\fg{}, où les apprenants délèguent les processus cognitifs coûteux et renoncent à l'effort de construction personnelle des connaissances~\citep{fan2023metacognitive}.

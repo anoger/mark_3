@@ -1,0 +1,92 @@
+\chapter{Méthodologie Générale et Plateforme Expérimentale}
+\label{ch:methodologie}
+
+% Sommaire de chapitre
+\sommairechapitre
+
+% Section 3.1 - Introduction + Instruments de Mesure
+\section{La Plateforme Expérimentale MemorIA}
+\label{sec:memoria_plateforme}
+
+Les instruments de mesure présentés dans la section précédente constituent les outils d'évaluation permettant de caractériser l'impact des agents conversationnels historiques sur les élèves. Cependant, le déploiement effectif de ces agents en contexte scolaire réel nécessite une infrastructure technique robuste, capable de gérer les contraintes spécifiques de l'environnement éducatif tout en offrant une expérience d'interaction naturelle et engageante. Cette section présente la plateforme MemorIA, développée spécifiquement pour répondre à ces exigences.
+
+MemorIA constitue l'infrastructure technologique commune à l'ensemble des études empiriques détaillées dans les chapitres 4 et 5. Son développement a été guidé par une série d'objectifs et de contraintes identifiés en collaboration avec les enseignants d'histoire-géographie partenaires, ainsi que par les enseignements tirés de l'état de l'art sur les agents pédagogiques incarnés. Les sous-sections suivantes détaillent les objectifs et contraintes de conception de la plateforme, son architecture technique, ainsi que les résultats d'une étude pilote exploratoire qui a permis de valider sa faisabilité et d'identifier des axes d'amélioration pour les études contrôlées ultérieures.
+
+\subsection{Objectifs et Contraintes de Conception}
+\label{subsec:objectifs_contraintes}
+
+Le développement de la plateforme MemorIA a été motivé par la nécessité de disposer d'un outil technique robuste, flexible et déployable dans des conditions réelles de classe pour étudier l'impact des agents conversationnels historiques sur l'engagement des élèves. Pour répondre au désengagement documenté en introduction (section~\ref{sec:intro_contexte}), la plateforme devait satisfaire plusieurs exigences techniques et pédagogiques spécifiques.
+
+L'émergence des grands modèles de langage (LLM) et des technologies d'IA générative offre de nouvelles opportunités pour créer des expériences d'apprentissage interactives. Contrairement aux systèmes tutoriels intelligents traditionnels, qui reposent sur des bases de connaissances structurées et des arbres de dialogue prédéfinis, les LLM permettent de générer des réponses contextuellement appropriées et adaptées en temps réel. Cependant, l'utilisation de ces technologies dans un contexte éducatif nécessite de répondre à plusieurs exigences techniques et pédagogiques spécifiques. MemorIA a été conçu comme une plateforme expérimentale intégrant diverses technologies d'IA existantes dans un système cohérent optimisé pour les contraintes du milieu scolaire.
+
+Le déploiement d'agents conversationnels historiques dans un environnement scolaire réel impose plusieurs exigences fonctionnelles majeures qui ont orienté la conception de MemorIA. Pour maintenir l'engagement des élèves lors d'interactions orales, le système doit offrir une \textbf{interactivité en temps réel}, avec une fluidité conversationnelle proche d'un échange naturel. Des délais excessifs entre les questions et les réponses risquent de rompre le flux conversationnel et de diminuer la perception de présence sociale de l'agent. L'objectif est d'atteindre un équilibre entre réactivité et qualité de traitement, tout en gérant les contraintes inhérentes au traitement séquentiel des informations : reconnaissance de la parole, génération de réponse, synthèse vocale, et animation faciale.
+
+Les salles de classe constituent des environnements acoustiques complexes avec des niveaux sonores variables, des accents régionaux, et potentiellement plusieurs élèves parlant simultanément. Le système doit donc être capable de transcrire correctement la parole des élèves malgré ces perturbations, tout en maintenant une qualité d'interaction suffisante. Cette \textbf{robustesse en environnement réel} est essentielle pour assurer une utilisation effective dans des conditions pédagogiques authentiques.
+
+La plateforme doit pouvoir être déployée sur du matériel accessible aux établissements scolaires, sans nécessiter d'infrastructure informatique exceptionnelle ou de compétences techniques avancées de la part des enseignants. L'interface utilisateur doit être suffisamment simple pour qu'un enseignant puisse lancer le système et que les élèves puissent interagir naturellement par la voix, sans manipulation technique complexe. Cette contrainte d'\textbf{accessibilité et de facilité de déploiement} influence directement les choix technologiques et architecturaux du système.
+
+La qualité de la représentation visuelle de l'agent historique constitue un enjeu majeur à la fois technique et perceptuel. La génération d'animations faciales expressives en temps réel impose des compromis entre qualité visuelle et performance computationnelle. Un photoréalisme imparfait peut déclencher l'effet de vallée dérangeante (\textit{uncanny valley})~\citep{mori2012}, où des représentations humaines quasi-réalistes provoquent des sentiments de malaise chez les observateurs. À l'inverse, une approche stylisée peut réduire ces effets négatifs tout en maintenant une expressivité suffisante pour soutenir l'engagement émotionnel. Le paysage technologique de l'animation faciale et de la génération d'images par IA évolue rapidement, soulevant de nouvelles questions de recherche sur l'impact d'un photoréalisme accru sur les perceptions et les processus cognitifs des élèves.
+
+Au-delà des aspects purement techniques, le déploiement d'agents conversationnels historiques doit répondre à des exigences pédagogiques et éthiques spécifiques au contexte éducatif. Les grands modèles de langage, bien que capables de générer des réponses fluides et contextuellement cohérentes, peuvent produire des informations historiquement inexactes ou non vérifiables. Dans un contexte éducatif où l'objectif est de transmettre des connaissances historiques validées, cette limitation pose un risque pédagogique important. Le système doit donc intégrer des mécanismes visant à améliorer la \textbf{fiabilité des contenus historiques}, tout en permettant aux enseignants de maintenir un contrôle sur la qualité des contenus.
+
+La conception de MemorIA repose sur un principe fondamental : l'agent conversationnel n'est pas destiné à remplacer l'enseignant, mais à constituer un outil complémentaire qui enrichit les pratiques pédagogiques existantes. L'enseignant doit pouvoir jouer plusieurs rôles essentiels : fournir le contexte historique nécessaire aux échanges, valider les informations données par l'agent, et guider les élèves dans le développement d'une posture critique envers les réponses générées par l'IA. Ce \textbf{rôle médiateur de l'enseignant} est particulièrement important à l'ère des technologies génératives, où les élèves doivent développer des compétences pour analyser non seulement les documents historiques traditionnels, mais aussi les représentations historiques médiées par l'IA.
+
+La représentation numérique de figures historiques soulève des questions éthiques spécifiques. Comme l'ont souligné certains chercheurs~\citep{berson2024}, il existe un risque de manipulation de l'« histoire joyeuse » (\textit{happy history}), où les technologies d'IA peuvent altérer la gravité d'événements historiques. Les personnages historiques doivent être présentés de manière à susciter l'intérêt des élèves tout en préservant la dignité et la complexité des figures représentées. De plus, la génération de portraits pour des personnages historiques pour lesquels nous ne disposons pas de représentation photographique implique des choix interprétatifs qui doivent être expliqués aux élèves. La transparence sur la nature construite et artificielle de ces représentations est essentielle pour maintenir une approche critique de l'histoire.
+
+Dans le cadre du développement de MemorIA et des études expérimentales associées, plusieurs agents conversationnels historiques ont été créés. Le Tableau~\ref{tab:agents_historiques} récapitule les caractéristiques principales de ces agents.
+
+\begin{table}[htbp]
+\centering
+\caption{Récapitulatif des agents conversationnels historiques développés pour MemorIA.}
+\label{tab:agents_historiques}
+\begin{tabular}{p{3cm}p{2.5cm}p{2.5cm}p{3cm}p{3cm}}
+\hline
+\textbf{Personnage} & \textbf{Période/Thème} & \textbf{Niveau scolaire} & \textbf{Style de communication} & \textbf{Génération visuelle} \\
+\hline
+Napoléon Bonaparte & Empire français (1804-1815) & 4ème (8th grade) & Formel, autoritaire, narration à la première personne & Midjourney V5, portrait stylisé avec uniforme impérial \\
+\hline
+Jules César & République romaine antique & 6ème (6th grade) & Accessible, vulnérable, touches d'humour, narration à la première personne & Midjourney V5, portrait stylisé avec couronne de laurier \\
+\hline
+Charles de Gaulle & Résistance française (1940-1945) & Terminale (12th grade) & Autorité formelle tempérée de moments de vulnérabilité, narration à la première personne & Midjourney V5, portrait stylisé basé sur photographies historiques + clonage vocal ElevenLabs \\
+\hline
+Louis (personnage fictif) & Résistance française (1940-1945) & Terminale (12th grade) & Informel, accessible, perspective d'un jeune résistant, narration à la première personne & Midjourney V6 Remix Mode, portrait jeune résistant créé à partir du modèle de de Gaulle \\
+\hline
+Agent neutre (Napoléon) & Empire français (1804-1815) & 4ème (8th grade) & Exposé factuel à la troisième personne, ton neutre, expressions sobres & Midjourney V5, portrait sobre sans attributs historiques spécifiques \\
+\hline
+\end{tabular}
+\end{table}
+
+Chaque personnage a été développé en étroite collaboration avec les enseignants d'histoire-géographie afin d'assurer l'alignement avec les programmes scolaires français. Les prompts ont été conçus pour intégrer à la fois le contexte historique, les limites de connaissance appropriées à la période représentée, et les directives comportementales correspondant au style de communication souhaité (voir Annexe~\ref{annexe:prompts} pour les prompts systèmes complets). Les choix de style de communication ont été motivés par des considérations à la fois pédagogiques et expérimentales, permettant d'étudier empiriquement comment différents types de représentation d'agents historiques influencent l'intérêt et l'engagement des élèves à différents niveaux de développement.
+
+\subsection{Architecture Technique de MemorIA}
+\label{subsec:architecture_technique}
+
+% Section 3.2 - Contenu créé lors de la Tâche 1.1 (Type A - Recopie Technique)
+\input{chapters/Ch3_Methodologie/3_2_justification_choix.tex}
+\input{chapters/Ch3_Methodologie/3_2_architecture_technique.tex}
+
+\subsection{Mise en Œuvre et Valorisation Initiale}
+\label{subsec:mise_en_oeuvre}
+
+Afin d'évaluer le potentiel de MemorIA dans un contexte éducatif réel, nous avons mené une étude pilote exploratoire dans un collège français. Cette phase visait à examiner comment les choix architecturaux et techniques se traduisaient dans une situation d'apprentissage authentique, et à recueillir des retours qualitatifs permettant d'identifier les forces et les limites du système dans son environnement d'usage cible.
+
+L'étude pilote s'est déroulée dans quatre classes de sixième d'un collège, impliquant 60 élèves (âgés de 10 à 12 ans) et 4 enseignants d'histoire-géographie. Nous avons mené des observations dans deux classes différentes, chaque session durant 55 minutes. Le déploiement s'est concentré sur la Rome antique à travers une représentation virtuelle de Jules César, figure historique étudiée dans le cadre du programme de sixième (voir Annexe~\ref{annexe:materiel} pour le détail du dispositif technique et des contenus pédagogiques). Le protocole d'observation comprenait des périodes structurées d'interaction directe avec l'agent (30 minutes) et des moments de réflexion collective (25 minutes). Pendant la phase d'interaction, les élèves se tenaient devant l'écran de la classe pour s'engager avec la représentation virtuelle de César, l'ensemble de la classe pouvant observer à la fois les réponses verbales et les expressions faciales de l'agent virtuel, comme illustré dans la Figure~\ref{fig:classroom_implementation}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/ch3/classroom_implementation_caesar.png}
+    \caption{Implémentation en classe de MemorIA montrant les élèves interagissant avec le Jules César virtuel au sujet du siège d'Alésia, sous la supervision de l'enseignant.}
+    \label{fig:classroom_implementation}
+\end{figure}
+
+Cette approche méthodologique exploratoire privilégiait les observations qualitatives afin de fournir une compréhension contextuelle riche de la dynamique de classe lors du déploiement du système, avec la reconnaissance que les études ultérieures bénéficieront de conditions de comparaison contrôlées et de métriques d'engagement standardisées.
+
+Les sessions ont révélé plusieurs dynamiques significatives en termes d'engagement et de participation. Les retours présentés ci-après ont été recueillis lors de sessions d'observation directe et d'entretiens semi-structurés menés immédiatement après les interactions avec l'agent virtuel. Les enseignants ont noté une participation accrue de la part d'élèves habituellement réservés, un phénomène qu'ils ont attribué à la nature conversationnelle de l'outil. Un enseignant a témoigné : « J'ai été surpris de voir certains élèves qui participent rarement lever la main plusieurs fois pour poser des questions. » La possibilité d'interagir oralement en temps réel avec l'agent semblait particulièrement engageante. Un autre enseignant a observé : « Ce qui change tout, c'est qu'ils peuvent lui parler directement et obtenir une réponse immédiate. Même les élèves timides qui hésitent à écrire osent poser des questions. » Cette dimension orale et interactive semblait réduire les barrières habituelles à la participation, permettant des échanges plus spontanés.
+
+Les aspects non verbaux de l'interaction, en particulier les expressions faciales de l'agent, ont également généré des réactions notables. Les élèves ont régulièrement commenté l'alignement entre le discours et les expressions, en particulier lors des récits de batailles ou d'événements politiques majeurs. Un élève a remarqué : « Il a l'air triste quand il parle de Brutus, c'est étrange de le voir comme ça. » Les capacités d'animation faciale ont particulièrement résonné lors des discussions d'événements historiques émotionnellement chargés, rendant ces conflits plus concrets et vivants aux yeux des élèves.
+
+L'étude pilote a également révélé plusieurs limitations techniques et pédagogiques nécessitant des améliorations. La qualité visuelle des animations, en particulier leur résolution lors des projections en classe, a été identifiée comme une distraction potentielle, plusieurs élèves décrivant les animations comme « floues » ou « pixelisées » sur le grand écran. Des enseignants ont également exprimé des préoccupations concernant la précision historique de certaines réponses générées, notant que si les informations n'étaient pas factuellement fausses, elles manquaient parfois de contexte ou de profondeur. Ces observations ont guidé l'identification de deux axes majeurs d'amélioration technique : l'intégration d'un système de génération augmentée par récupération (RAG) pour ancrer les réponses dans des sources historiques vérifiées, et l'optimisation de la qualité visuelle des animations faciales.
+
+Cette recherche a contribué à la compréhension et au développement d'outils IA interactifs pour l'éducation en démontrant la faisabilité technique d'un système intégrant reconnaissance vocale, génération de langage, synthèse vocale et animation faciale dans un pipeline unifié déployable en classe. L'étude pilote exploratoire a fourni des observations qualitatives préliminaires suggérant des augmentations potentielles de la participation des élèves lors des interactions avec le système, tout en mettant en évidence des domaines nécessitant des améliorations techniques et pédagogiques. Ces travaux ont fait l'objet d'une publication dans la revue \textit{Computer Animation and Virtual Worlds}~\citep{oger2025}, démontrant la validation scientifique de l'approche architecturale proposée.
+
+Les résultats de cette phase exploratoire ont informé la conception des études empiriques contrôlées présentées dans les chapitres suivants de ce manuscrit, qui examinent de manière systématique l'influence de caractéristiques d'interaction spécifiques — telles que les modalités de dialogue en temps réel et les styles de représentation visuelle — sur l'intérêt et la motivation des élèves à différents niveaux de développement.

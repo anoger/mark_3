@@ -1,0 +1,109 @@
+Chapitre 2 : État de l'Art (environ 13500 mots)
+Chapitre 2 : État de l'Art - Plan Définitif
+Ce chapitre établit le cadre théorique nécessaire à l'analyse de l'interaction entre élèves et agents virtuels historiques. La structure suit une progression logique : elle part des mécanismes internes de l'apprenant (2.1), examine la nature de l'interaction avec l'agent (2.2), analyse la rupture technologique des IA génératives (2.3), pour aboutir au risque métacognitif central de la thèse (2.4).
+
+================================================================================
+2.1. Cadre Théorique de l'Apprenant : Motivation, Intérêt et Pertinence
+================================================================================
+Objectif : Définir les moteurs psychologiques internes de l'apprentissage. Faire la distinction entre les concepts de Motivation, d'Engagement et d'Intérêt/Curiosité.
+[SOURCES : IJCCI_extraction.txt]
+
+* 2.1.1. Dynamiques Motivationnelles : SDT et CET
+   * La Théorie de l'Autodétermination (SDT) : Autonomie, Compétence, Affiliation.
+   * Intégration de la Théorie de l'Évaluation Cognitive (CET) : Comment le contexte externe (récompenses, feedback de l'agent) facilite ou sape la motivation intrinsèque.
+* 2.1.2. Architecture de l'Intérêt
+   * Le continuum de l'intérêt (Hidi & Renninger) : de l'intérêt situationnel (déclenché par l'agent) à l'intérêt individuel.
+* 2.1.3. La Théorie de la Pertinence (Relevance) et de la Valeur
+   * Expectancy-Value Theory (Eccles/Wigfield) et le concept de Utility Value (Harackiewicz).
+   * La pertinence comme connexion personnelle (Albrecht).
+* 2.1.4. L'Apprentissage Actif et le Cadre ICAP
+   * Engagement cognitif : Passif < Actif < Constructif < Interactif (Chi).
+* 2.1.5. La Personnalisation de l'Apprentissage
+   * Adaptation aux intérêts et besoins pour maximiser la pertinence.
+
+================================================================================
+2.2. Le Contexte Disciplinaire : Enseigner et Apprendre l'Histoire [APPLICATION]
+================================================================================
+Objectif : Diagnostiquer les problèmes spécifiques de l'Histoire à l'aide des outils définis en 2.1.
+[SOURCES : État de l'Art Histoire, IJCCI_extraction.txt]
+
+* 2.2.1. Épistémologie et Comparaison Interdisciplinaire (Histoire vs STIM)
+   * Nature du savoir : L'Histoire comme récit interprétatif vs les STIM (Sciences, Techno, Ingénierie, Maths) comme savoirs cumulatifs et procéduraux.
+   * Analyse par la Utility Value (cf. 2.1.3) : Pourquoi les STIM bénéficient d'une perception d'utilité immédiate/professionnelle forte, là où l'Histoire souffre d'un déficit de perception d'utilité concrète.
+* 2.2.2. La Perception des Élèves : Le Paradoxe "Ennuyeux mais Important"
+   * Le décalage entre la reconnaissance sociale de l'Histoire et le désintérêt scolaire. Analyse du désintérêt scolaire via le prisme de la pertinence (manque de connexion personnelle  (le "Self-Relevance" d'Albrecht )) +  analyse via 2.1.1/CET.
+* 2.2.3. Pratiques Pédagogiques : Du Transmissif à l'Actif
+   [SOURCES : Technologies Éducatives — interventions expérimentales en sciences sociales]
+   * Critique du cours magistral : Pourquoi il échoue (mode "Passif" du cadre ICAP).
+   * Succès des approches actives : Narrativité, empathie historique, jeux de rôle.
+   * Analyse par l'ICAP (cf. 2.1.3) : Comment ces méthodes activent les modes "Constructif" et "Interactif".
+
+================================================================================
+2.3. Cadre Théorique de l'Interaction : Cognition, Multimédia et Présence Sociale [RÉVISÉ]
+================================================================================
+Objectif : Analyser comment l'interface et le design de l'agent transforment une interaction technique en une interaction sociale.
+[SOURCES : IJCCI_extraction.txt, Research Paper Mapper]
+
+* 2.3.1. Architecture Cognitive et Apprentissage Multimédia (CTML & TCC)
+   * Le socle cognitif : Théorie de la Charge Cognitive (Sweller) et Théorie Cognitive de l'Apprentissage Multimédia (Mayer).
+   * Justification technique des agents oraux (Principe de Modalité).
+
+* 2.3.2. La Présence Sociale et le Paradigme CASA
+   * Le mécanisme psychologique : Définition de la Présence Sociale (sentiment d'être "avec" une autre intelligence).
+   * Le Paradigme CASA (Computers Are Social Actors, Nass & Moon) : Pourquoi le cerveau applique des règles sociales aux médias.
+   * La présence sociale comme condition sine qua non de l'engagement relationnel.
+
+* 2.3.3. De la Présence à l'Apprentissage : Incarnation et Agence Sociale
+   [SOURCES : Technologies Éducatives, Research Paper Mapper — méta-analyses agents pédagogiques]
+   * L'application pédagogique : Théorie de l'Agence Sociale (Mayer). Comment la présence sociale active un "contrat de partenariat" qui augmente l'effort cognitif.
+   * L'effet d'Embodiment : Rôle des indices non-verbaux (regard, gestuelle, synchronicité) pour maintenir l'illusion de présence.
+   * Analyse critique des méta-analyses (Schroeder, Davis, Dai) sur l'efficacité des agents.
+
+* 2.3.4. Les Ruptures de Présence : La Vallée de l'Étrange (Uncanny Valley)
+   * Théorie de l'Uncanny Valley (Mori, McDonnell).
+   * Le risque de dissonance entre réalisme visuel et comportemental (Expectancy Violation Theory).
+
+================================================================================
+2.4. La Rupture Technologique des IA Génératives en Éducation
+================================================================================
+Objectif : Contextualiser l'étude dans l'ère post-2023 et les nouvelles affordances des LLM + La solution technique
+[SOURCES : illusion_extraction.txt]
+
+* 2.4.1. Des Agents Scriptés aux Agents Génératifs : Le Saut Qualitatif
+   * Limites des systèmes tutoriels classiques (arbres de décision, rigidité).
+   * Les Grands Modèles de Langage (LLM) : Capacités (génération fluide, adaptation contextuelle) et limites ("hallucinations", biais) et la synthèse multimédia avancée : Animation faciale, clonage vocal, génération d'images et vidéo ("deepfakes").
+
+* 2.4.2. La Personnalisation de l'Apprentissage
+   * Le concept d'apprentissage adaptatif (Adaptive Learning) : ajuster le contenu et le rythme.
+   * Adaptation sémantique et stylistique en temps réel (Leong, Pataranutaporn).
+
+* 2.4.3. Fiabilité et Hallucinations : Le Défi Épistémique
+   * Nature stochastique des LLM et typologie des hallucinations (Zhang).
+   * La tension spécifique en histoire : plausibilité narrative vs exactitude factuelle.
+
+================================================================================
+2.5. Le Phénomène de l'Illusion de Compréhension (IoU)
+================================================================================
+Objectif : Définir le risque majeur exploré par la thèse, revers de la médaille de la fluidité + La limite critique
+[SOURCES : illusion_extraction.txt]
+
+* 2.5.1. Métacognition et Calibration de la Confiance
+   * Définition de l'Illusion de Profondeur Explicative (IOED - Rozenblit & Keil).
+   * L'effet Dunning-Kruger et le déficit métacognitif.
+
+* 2.5.2. L'Heuristique de Fluidité (Fluency Heuristic)
+   * Lien entre facilité de traitement et jugement de vérité (Reber & Schwarz).
+   * "Instructor Fluency Effect" : confondre la qualité de la présentation avec la qualité de l'apprentissage.
+
+* 2.5.3. L'Autorité de l'Agent et la Vigilance Épistémique
+   * Impact de l'anthropomorphisme sur la crédibilité perçue.
+   * Le risque de "Knowledge Neglect" face à un agent persuasif et fluide.
+
+================================================================================
+2.6. Synthèse et Problématique
+================================================================================
+Objectif : Justifier les questions de recherche de la thèse.
+
+* 2.6.1. Convergence et Tensions Théoriques (Outils engageants mais risqués).
+* 2.6.2. Les Lacunes de la Littérature Actuelle
+* 2.6.3. Questions et Hypothèses de Recherche.

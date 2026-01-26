@@ -1,0 +1,137 @@
+\chapter{Conclusion et Perspectives}
+\label{ch:conclusion}
+
+\sommairechapitre
+
+Ce chapitre conclut le manuscrit en synthétisant les contributions de cette recherche doctorale et en ouvrant des perspectives pour les travaux futurs. Nous rappelons d'abord les objectifs initiaux et les apports principaux, avant de formuler des réponses aux questions de recherche posées en introduction. La seconde partie présente les perspectives, parmi lesquelles une troisième étude empirique en préparation.
+
+%=============================================================================
+\section{Synthèse des Contributions}
+\label{sec:synthese_contributions}
+%=============================================================================
+
+Cette thèse avait pour ambition d'examiner la conception et l'impact des agents conversationnels incarnés alimentés par l'intelligence artificielle générative dans un contexte éducatif spécifique : l'enseignement de l'histoire au secondaire. L'originalité de ce travail résidait dans sa double focale --- l'engagement des élèves d'une part, les risques métacognitifs d'autre part --- ainsi que dans son ancrage écologique, les études ayant été conduites en classe réelle, intégrées au programme scolaire.
+
+\subsection{Rappel des Objectifs}
+
+L'enseignement de l'histoire se heurte à une difficulté documentée : les élèves reconnaissent l'importance de cette discipline tout en la percevant comme peu engageante dans sa forme scolaire traditionnelle. L'émergence des grands modèles de langage ouvre une possibilité inédite --- converser avec des représentations de figures historiques --- qui pourrait transformer ce rapport. Cette promesse se double cependant d'un risque : la fluidité même de ces agents pourrait induire une confiance excessive dans sa propre compréhension.
+
+Trois questions de recherche structuraient notre investigation :
+\begin{itemize}
+    \item \textbf{QR1} : L'interactivité orale avec un agent historique influence-t-elle l'intérêt des élèves par rapport à une présentation passive ?
+    \item \textbf{QR2} : Comment l'alignement thématique et le style de l'agent modulent-ils cet intérêt selon le stade développemental ?
+    \item \textbf{QR3} : L'apparence de l'agent influence-t-elle la propension à l'illusion de compréhension ?
+\end{itemize}
+
+\subsection{Apports de la Plateforme MemorIA}
+
+Le chapitre 3 a présenté MemorIA, une architecture technique modulaire permettant le déploiement d'agents conversationnels historiques en milieu scolaire. Cette plateforme intègre dans un pipeline temps réel la reconnaissance vocale (Whisper\footnote{OpenAI Whisper : \url{https://openai.com/research/whisper}}), la génération de langage (GPT-4\footnote{OpenAI GPT-4 : \url{https://openai.com/gpt-4}}), la synthèse vocale (ElevenLabs\footnote{ElevenLabs : \url{https://elevenlabs.io/}}) et l'animation faciale (Audio2Face\footnote{NVIDIA Audio2Face : \url{https://www.nvidia.com/en-us/omniverse/apps/audio2face/}}, FOMM\footnote{First Order Motion Model : \url{https://github.com/AliaksandrSiarohin/first-order-model}}). L'étude pilote conduite avec Jules César auprès de 60 élèves de sixième a validé la faisabilité technique et l'acceptabilité du dispositif.
+
+La contribution méthodologique de MemorIA réside dans sa modularité : chaque brique peut être substituée indépendamment, permettant d'isoler expérimentalement l'effet de composants spécifiques. Cette flexibilité a été mise à profit dans les études empiriques subséquentes.
+
+\subsection{Apports de l'Étude 1 : Interactivité et Intérêt}
+
+L'Étude 1 (chapitre 4) comprenait trois expérimentations conduites auprès de 339 élèves répartis sur trois niveaux scolaires (sixième, quatrième, terminale). Ces expérimentations ont manipulé systématiquement le mode d'interaction (interactif vs. vidéo préenregistrée) et les caractéristiques de l'agent (alignement thématique, style de présentation, statut).
+
+Les élèves en condition interactive ont systématiquement rapporté un intérêt plus élevé pour l'activité, pour le personnage historique et pour le contenu de la leçon --- un effet persistant après contrôle de l'intérêt initial. L'effet de la représentation s'est révélé plus nuancé : l'alignement thématique formel (Napoléon vs. agent neutre) n'a pas produit de bénéfice mesurable, tandis qu'un agent thématiquement aligné mais présenté de manière accessible (César) a généré un intérêt supérieur. La comparaison entre figure d'autorité (de Gaulle) et figure de pair (Louis) n'a pas différencié les conditions.
+
+\subsection{Apports de l'Étude 2 : Design et Illusion de Compréhension}
+
+L'Étude 2 (chapitre 5) a déplacé l'analyse vers le versant métacognitif. Conduite auprès de 119 collégiens de cinquième, elle examinait l'influence du design visuel de l'agent (guide humanoïde vs. représentation abstraite) sur l'illusion de compréhension, mesurée par une adaptation du protocole IOED.
+
+Les deux conditions ont produit des profils métacognitifs comparables : les élèves surestimaient leur compréhension, cette surestimation persistant après exposition aux explications de l'agent indépendamment de son apparence. L'étude a également mis en évidence une corrélation positive entre anthropomorphisme perçu et confiance accordée à l'agent, suggérant que la perception de caractéristiques humaines --- indépendamment du design objectif --- module la relation à l'outil.
+
+%=============================================================================
+\section{Réponses aux Questions de Recherche}
+\label{sec:reponses_qr}
+%=============================================================================
+
+\subsection{Réponse à QR1 : L'Effet de l'Interactivité}
+
+\textit{Dans quelle mesure l'interactivité orale directe avec un agent historique alimenté par l'IA influence-t-elle l'intérêt des élèves par rapport à une présentation vidéo passive ?}
+
+Les trois expérimentations de l'Étude 1 apportent une réponse convergente : l'interactivité augmente significativement l'intérêt des élèves, et ce de la sixième à la terminale. Ce résultat s'inscrit dans le cadre théorique ICAP de \citet{chi2014} : le mode interactif, en engageant l'élève dans un dialogue constructif plutôt qu'une réception passive, active des processus cognitifs plus profonds. La théorie de l'agence sociale de \citet{moreno2001} complète cette interprétation : les indices sociaux émis par l'agent déclenchent des réponses sociales qui soutiennent l'engagement.
+
+\subsection{Réponse à QR2 : L'Effet de la Représentation}
+
+\textit{Comment l'alignement thématique de l'agent et son style de présentation modulent-ils cet intérêt en fonction du stade développemental des élèves ?}
+
+La réponse s'avère plus complexe. L'alignement thématique n'a pas produit d'effet systématique : Napoléon n'a pas surpassé un agent neutre, et de Gaulle n'a pas différé de Louis. En revanche, César, présenté de manière accessible et familière, a généré un intérêt supérieur. Ces résultats suggèrent que le style communicationnel --- l'accessibilité, la chaleur relationnelle --- prime sur la cohérence thématique formelle. Les élèves plus jeunes semblent particulièrement sensibles à la qualité relationnelle de l'interaction. Cette interprétation reste toutefois spéculative et mériterait une investigation systématique.
+
+\subsection{Réponse à QR3 : L'Effet sur l'Illusion de Compréhension}
+
+\textit{L'apparence de l'agent influence-t-elle la propension des élèves à l'illusion de compréhension, leur confiance et la crédibilité perçue des informations délivrées ?}
+
+Contrairement à nos hypothèses initiales, le design visuel n'a pas modulé l'illusion de compréhension. Ce résultat invite à formuler l'hypothèse d'un <<~équilibre des défauts symétriques~>> : l'incarnation humanoïde activerait une confiance sociale (l'agent est perçu comme un interlocuteur fiable), tandis que l'interface abstraite activerait une confiance technologique (le système est perçu comme une source d'information objective). Ces deux formes de confiance, de nature différente, produiraient des effets comparables sur la calibration métacognitive.
+
+Cette interprétation ouvre une piste : si le design visuel ne suffit pas, quels facteurs pourraient moduler ces biais ? La prosodie vocale, les marqueurs d'incertitude dans le discours, ou la présence d'un médiateur humain constituent des candidats à explorer --- une question que l'Étude 3 en préparation aborde directement.
+
+%=============================================================================
+\section{Limites et Portée des Résultats}
+\label{sec:limites}
+%=============================================================================
+
+Les résultats de cette recherche doivent être interprétés à la lumière de plusieurs limitations.
+
+\paragraph{Durée des interventions.} Les études ont impliqué des sessions uniques de 45 à 60 minutes. Les effets observés pourraient refléter un effet de nouveauté susceptible de s'atténuer avec l'usage répété. Des études longitudinales seraient nécessaires pour évaluer la persistance des effets.
+
+\paragraph{Spécificité disciplinaire.} Les études ont été conduites exclusivement en histoire. La généralisabilité des résultats à d'autres disciplines --- notamment scientifiques, où la vérification factuelle est plus immédiate --- reste à établir.
+
+\paragraph{Contexte culturel et institutionnel.} Les études ont été menées dans des établissements français. Les effets pourraient varier selon les contextes culturels, les traditions pédagogiques et les représentations de la technologie.
+
+\paragraph{Mesures auto-rapportées.} L'intérêt a été mesuré par questionnaires. Ces mesures déclaratives pourraient être influencées par des biais de désirabilité sociale ou par l'effet de halo lié à la nouveauté du dispositif.
+
+\paragraph{Absence de mesure d'apprentissage effectif.} L'Étude 1 n'a pas inclus de mesure des apprentissages. L'intérêt accru ne garantit pas une meilleure acquisition des connaissances historiques.
+
+\paragraph{Design inter-sujets.} Les études ont utilisé des designs inter-sujets, exposant chaque participant à une seule condition. Un design intra-sujets permettrait de contrôler la variabilité individuelle, au prix d'effets d'ordre et de contamination.
+
+%=============================================================================
+\section{Ouverture et Recherches Futures}
+\label{sec:perspectives}
+%=============================================================================
+
+Les résultats de cette thèse ouvrent plusieurs perspectives de recherche, organisées selon trois axes : l'approfondissement des mécanismes métacognitifs, l'exploration de modalités alternatives et les questionnements éthiques.
+
+\subsection{Vers une Exploration des Mécanismes Métacognitifs}
+\label{subsec:etude3}
+
+L'absence d'effet du design visuel sur l'illusion de compréhension dans l'Étude 2 invite à explorer d'autres facteurs susceptibles de moduler les biais métacognitifs face aux agents conversationnels. La littérature sur l'heuristique de fluidité suggère que la facilité de traitement d'une information influence les jugements de compréhension et de crédibilité \citep{reber1999, toftness2018}. L'<<~effet de fluidité de l'instructeur~>> désigne le biais par lequel un enseignant au discours fluide induit chez les apprenants une surestimation de leur compréhension \citep{carpenter2013}.
+
+Les agents génératifs actuels tendent à produire un discours fluide : les modèles de synthèse vocale génèrent une parole articulée, généralement dépourvue d'hésitations ou de ruptures de rythme. Cette caractéristique technique pourrait contribuer à l'illusion de compréhension, possiblement davantage que l'incarnation visuelle. Une hypothèse peut être formulée : l'incarnation visuelle et la prosodie agiraient selon des mécanismes distincts --- l'incarnation pourrait fonctionner comme un <<~validateur social~>> renforçant la crédibilité perçue, tandis que la fluidité prosodique contribuerait à l'illusion de compréhension subjective.
+
+Pour examiner cette hypothèse, une troisième étude en préparation adopte un plan factoriel croisant la modalité de présentation (incarnée vs. désincarnée) et les caractéristiques prosodiques du discours (fluide vs. hésitante). Sur le plan méthodologique, cette étude recourt à un paradigme de <<~fausse théorie plausible~>> pour évaluer l'adoption effective d'une croyance erronée, plutôt que de s'appuyer uniquement sur des mesures déclaratives. Ce paradigme vise à compléter les mesures auto-rapportées par une évaluation de l'impact de la présentation sur les croyances des participants.
+
+\subsection{Exploration de Modalités Alternatives}
+
+Au-delà de l'Étude 3, plusieurs pistes méritent exploration :
+
+\paragraph{Interaction multimodale.} Les études présentées ont privilégié l'interaction orale. L'ajout de modalités gestuelles ou de composantes collaboratives (interaction entre pairs médiatisée par l'agent) pourrait modifier la dynamique d'engagement et les processus métacognitifs.
+
+\paragraph{Personnalisation adaptative.} Les agents utilisés délivraient un contenu uniforme. Des systèmes adaptatifs, modulant le niveau de détail ou le style en fonction des réponses de l'élève, pourraient optimiser l'engagement tout en préservant la vigilance critique.
+
+\paragraph{Présence d'un médiateur humain.} Explorer le rôle d'un médiateur qui questionnerait, nuancerait ou contextualiserait les réponses de l'agent constitue une piste pour contrebalancer les risques métacognitifs.
+
+\paragraph{Études longitudinales.} Des suivis sur plusieurs semaines permettraient d'évaluer la persistance des effets, l'évolution de la calibration métacognitive avec la familiarisation, et l'impact sur les apprentissages effectifs.
+
+\subsection{Questionnements Éthiques}
+
+L'utilisation d'agents IA personnifiant des figures historiques soulève des questions éthiques qui dépassent le cadre de cette thèse mais méritent d'être signalées :
+
+\paragraph{Authenticité et représentation du passé.} Comment garantir que l'agent ne simplifie pas abusivement la complexité historique ? Comment représenter les zones d'incertitude et les débats historiographiques ?
+
+\paragraph{Responsabilité épistémique.} Lorsqu'un agent délivre une information erronée, qui en porte la responsabilité ? Comment former les élèves à une posture critique face à des sources apparemment autoritaires ?
+
+\paragraph{Consentement et transparence.} Les élèves doivent-ils être informés qu'ils interagissent avec un système génératif susceptible d'erreurs ? Cette transparence modifie-t-elle leur rapport à l'outil ?
+
+Ces questions appellent un dialogue entre chercheurs, enseignants, concepteurs et décideurs institutionnels pour définir un cadre d'usage responsable de ces technologies en contexte éducatif.
+
+%=============================================================================
+\section{Mot de Fin}
+\label{sec:mot_fin}
+%=============================================================================
+
+Cette recherche doctorale s'est attachée à examiner une technologie émergente --- les agents conversationnels incarnés alimentés par l'IA générative --- dans un contexte où elle est appelée à se déployer massivement : l'éducation. En articulant une perspective d'Interaction Homme-Machine avec les préoccupations de la didactique de l'histoire, elle a tenté de dépasser l'opposition stérile entre techno-enthousiasme et techno-scepticisme.
+
+Les résultats invitent à un optimisme mesuré. L'interactivité avec des agents historiques suscite un engagement dont témoignent les trois expérimentations de l'Étude 1. Mais cet engagement n'est pas sans risque : l'Étude 2 révèle que l'interaction avec ces agents, quelle que soit leur apparence, peut conduire les élèves à surestimer leur compréhension. L'enjeu pour la recherche et la conception n'est pas de choisir entre engagement et prudence, mais de concevoir des dispositifs qui articulent les deux.
+
+Au-delà des résultats empiriques, cette thèse aura contribué à poser une question qui nous semble fondamentale pour l'avenir de l'éducation : comment intégrer des technologies de plus en plus convaincantes tout en préservant --- et même en cultivant --- l'esprit critique qui constitue l'une des finalités essentielles de l'école ?
